@@ -4,3 +4,15 @@
     box-sizing: border-box;
     margin: 0 auto;
 }
+
+@media screen and (max-width: 918px) {
+    .footer {
+        width: calc(100% - 38px);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .footer {
+        padding: 48px 0 36px;
+    }
+}
