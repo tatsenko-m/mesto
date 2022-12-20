@@ -22,3 +22,13 @@
 .popup__save-button:hover {
     opacity: 0.8;
 }
+
+@media screen and (max-width: 526px) {
+    .popup__save-button {
+        min-width: 238px;
+        height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+        margin-top: 17px;
+    }
+  }
