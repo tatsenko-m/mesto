@@ -1,6 +1,5 @@
 .profile__info {
     display: grid;
-    height: max-content;
     grid-template-columns: fit-content(508px) 24px;
     grid-template-rows: max-content max-content;
     column-gap: 18px;
