@@ -23,10 +23,6 @@ const closePopup = function() {
     assignSavedValuesToInputs();
 }
 
-popupOpenButtonElement.addEventListener('click', openPopup);
-popupCloseButtonElement.addEventListener('click', closePopup);
-
-
 function handleFormSubmit(evt) {
     evt.preventDefault();
     profileTitleElement.textContent = `${nameInput.value}`;
@@ -34,4 +30,6 @@ function handleFormSubmit(evt) {
     closePopup();
 }
 
+popupOpenButtonElement.addEventListener('click', openPopup);
+popupCloseButtonElement.addEventListener('click', closePopup);
 formElement.addEventListener('submit', handleFormSubmit);
