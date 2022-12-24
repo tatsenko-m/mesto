@@ -8,26 +8,26 @@ const profileTitleElement = document.querySelector('.profile__title');
 const profileSubtitleElement = document.querySelector('.profile__subtitle');
 
 function assignSavedValuesToInputs() {
-    nameInput.value = profileTitleElement.textContent;
-    aboutInput.value = profileSubtitleElement.textContent;
+  nameInput.value = profileTitleElement.textContent;
+  aboutInput.value = profileSubtitleElement.textContent;
 }
 
 assignSavedValuesToInputs();
 
-const openPopup = function() {
-    popupElement.classList.add('popup_opened');
-}
+const openPopup = function () {
+  popupElement.classList.add('popup_opened');
+};
 
-const closePopup = function() {
-    popupElement.classList.remove('popup_opened');
-    assignSavedValuesToInputs();
-}
+const closePopup = function () {
+  popupElement.classList.remove('popup_opened');
+  assignSavedValuesToInputs();
+};
 
 function handleFormSubmit(evt) {
-    evt.preventDefault();
-    profileTitleElement.textContent = `${nameInput.value}`;
-    profileSubtitleElement.textContent = `${aboutInput.value}`;
-    closePopup();
+  evt.preventDefault();
+  profileTitleElement.textContent = `${nameInput.value}`;
+  profileSubtitleElement.textContent = `${aboutInput.value}`;
+  closePopup();
 }
 
 popupOpenButtonElement.addEventListener('click', openPopup);

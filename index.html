@@ -1,86 +1,132 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title lang="en">Mesto</title>
-</head>
-<body class="page">
+  </head>
+  <body class="page">
     <header class="header">
-        <img class="header__logo" src="./images/header-logo.svg" alt="Логотип Mesto">
+      <img
+        class="header__logo"
+        src="./images/header-logo.svg"
+        alt="Логотип Mesto"
+      />
     </header>
     <main>
-        <section class="profile">
-            <img class="profile__avatar" src="./images/avatar.png" alt="Аватар профиля">
-            <article class="profile__info">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <p class="profile__subtitle">Исследователь океана</p>
-                <button class="profile__edit-button" type="button"></button>
-            </article>
-            <button class="profile__add-button" type="button"></button>
-        </section>
-        <section class="gallery">
-            <ul class="gallery__list">
-                <li class="card">
-                    <img class="card__image" src="./images/gallery-karachayevo.png" alt="Фото Карачаево-Черкессия">
-                    <div class="card__description">
-                        <h2 class="card__title">Карачаево-Черкессия</h2>
-                        <button class="card__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__image" src="./images/gallery-elbrus.png" alt="Фото гора Эльбрус">
-                    <div class="card__description">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button class="card__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__image" src="./images/gallery-dombay.png" alt="Фото Домбай">
-                    <div class="card__description">
-                        <h2 class="card__title">Домбай</h2>
-                        <button class="card__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__image" src="./images/gallery-karelia.png" alt="Фото Карелия">
-                    <div class="card__description">
-                        <h2 class="card__title">Карелия</h2>
-                        <button class="card__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__image" src="./images/gallery-baikal.png" alt="Фото Байкал">
-                    <div class="card__description">
-                        <h2 class="card__title">Байкал</h2>
-                        <button class="card__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__image" src="./images/gallery-kurshskaya-kosa.png" alt="Фото Куршская коса">
-                    <div class="card__description">
-                        <h2 class="card__title">Куршская коса</h2>
-                        <button class="card__like-button" type="button"></button>
-                    </div>
-                </li>
-            </ul>
-        </section>
+      <section class="profile">
+        <img
+          class="profile__avatar"
+          src="./images/avatar.png"
+          alt="Аватар профиля"
+        />
+        <article class="profile__info">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <p class="profile__subtitle">Исследователь океана</p>
+          <button class="profile__edit-button" type="button"></button>
+        </article>
+        <button class="profile__add-button" type="button"></button>
+      </section>
+      <section class="gallery">
+        <ul class="gallery__list">
+          <li class="card">
+            <img
+              class="card__image"
+              src="./images/gallery-karachayevo.png"
+              alt="Фото Карачаево-Черкессия"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Карачаево-Черкессия</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img
+              class="card__image"
+              src="./images/gallery-elbrus.png"
+              alt="Фото гора Эльбрус"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img
+              class="card__image"
+              src="./images/gallery-dombay.png"
+              alt="Фото Домбай"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Домбай</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img
+              class="card__image"
+              src="./images/gallery-karelia.png"
+              alt="Фото Карелия"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Карелия</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img
+              class="card__image"
+              src="./images/gallery-baikal.png"
+              alt="Фото Байкал"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Байкал</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img
+              class="card__image"
+              src="./images/gallery-kurshskaya-kosa.png"
+              alt="Фото Куршская коса"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Куршская коса</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
     </main>
     <footer class="footer">
-        <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
     <section class="popup">
-        <div class="popup__container">
-            <button class="popup__close-button" type="button"></button>
-            <form class="popup__form" name="editProfile">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <input name="name" id="name" class="popup__item popup__item_el_name" type="text" placeholder="Имя" required>
-                <input name="about" id="about" class="popup__item popup__item_el_about" type="text" placeholder="О себе" required>
-                <button class="popup__save-button" type="submit">Сохранить</button>
-            </form>
-        </div>
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <form class="popup__form" name="editProfile">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input
+            name="name"
+            id="name"
+            class="popup__item popup__item_el_name"
+            type="text"
+            placeholder="Имя"
+            required
+          />
+          <input
+            name="about"
+            id="about"
+            class="popup__item popup__item_el_about"
+            type="text"
+            placeholder="О себе"
+            required
+          />
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
     </section>
     <script async src="./scripts/index.js"></script>
-</body>
+  </body>
 </html>
