@@ -12,10 +12,9 @@ function assignSavedValuesToInputs() {
   aboutInput.value = profileSubtitleElement.textContent;
 }
 
-assignSavedValuesToInputs();
-
 const openPopup = function () {
   popupElement.classList.add('popup_opened');
+  assignSavedValuesToInputs();
 };
 
 const closePopup = function () {
