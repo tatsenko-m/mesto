@@ -32,8 +32,11 @@ const cardPopupCloseButtonElement = cardPopupElement.querySelector('.popup__clos
 const profilePopupOpenButtonElement = document.querySelector('.profile__edit-button');
 const cardPopupOpenButtonElement = document.querySelector('.profile__add-button');
 const editProfileFormElement = profilePopupElement.querySelector('.popup__form');
+const addCardFormElement = cardPopupElement.querySelector('.popup__form');
 const nameInput = editProfileFormElement.querySelector('.popup__item_el_name');
 const aboutInput = editProfileFormElement.querySelector('.popup__item_el_about');
+const titleInput = addCardFormElement.querySelector('.popup__item_el_title');
+const linkInput = addCardFormElement.querySelector('.popup__item_el_link');
 const profileTitleElement = document.querySelector('.profile__title');
 const profileSubtitleElement = document.querySelector('.profile__subtitle');
 const template = document.querySelector('#card-template');
@@ -78,6 +81,14 @@ function renderCard (cardTitle, cardLink) {
   galleryList.prepend(createCard(cardTitle, cardLink));
 }
 
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault();
+  const cardTitle = `${titleInput.value}`;
+  const cardLink = `${linkInput.value}`;
+  renderCard (cardTitle, cardLink);
+  closePopup(cardPopupElement);
+}
+
 initialCards.forEach((item) => {
   renderCard(item.name, item.link);
 });
@@ -88,5 +99,6 @@ editProfileFormElement.addEventListener('submit', handleEditProfileFormSubmit);
 
 cardPopupOpenButtonElement.addEventListener('click', function(){openPopup(cardPopupElement)});
 cardPopupCloseButtonElement.addEventListener('click', function(){closePopup(cardPopupElement)});
+addCardFormElement.addEventListener('submit', handleAddCardFormSubmit);
 
 
