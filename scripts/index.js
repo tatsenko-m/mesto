@@ -87,6 +87,8 @@ function handleAddCardFormSubmit(evt) {
   const cardLink = `${linkInput.value}`;
   renderCard (cardTitle, cardLink);
   closePopup(cardPopupElement);
+  titleInput.value = '';
+  linkInput.value = '';
 }
 
 initialCards.forEach((item) => {
