@@ -1,3 +1,30 @@
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 const profilePopupElement = document.querySelector('.popup-edit-profile');
 const cardPopupElement = document.querySelector('.popup-add-card');
 const profilePopupCloseButtonElement = profilePopupElement.querySelector('.popup__close-button');
@@ -9,6 +36,8 @@ const nameInput = editProfileFormElement.querySelector('.popup__item_el_name');
 const aboutInput = editProfileFormElement.querySelector('.popup__item_el_about');
 const profileTitleElement = document.querySelector('.profile__title');
 const profileSubtitleElement = document.querySelector('.profile__subtitle');
+const template = document.querySelector('#card-template');
+const galleryList = document.querySelector('.gallery__list');
 
 function assignValuesToEditProfileFormInputs() {
   nameInput.value = profileTitleElement.textContent;
@@ -31,6 +60,27 @@ function handleEditProfileFormSubmit(evt) {
   profileSubtitleElement.textContent = `${aboutInput.value}`;
   closePopup(profilePopupElement);
 }
+
+function createCard (cardTitle, cardLink) {
+  const cardElement = template.content.querySelector('.card').cloneNode(true);
+
+  const cardTitleElement = cardElement.querySelector('.card__title');
+  cardTitleElement.textContent = cardTitle;
+
+  const cardImageElement = cardElement.querySelector('.card__image');
+  cardImageElement.src = cardLink;
+  cardImageElement.alt = 'Фото ' + cardTitle;
+
+  return cardElement;
+}
+
+function renderCard (cardTitle, cardLink) {
+  galleryList.prepend(createCard(cardTitle, cardLink));
+}
+
+initialCards.forEach((item) => {
+  renderCard(item.name, item.link);
+});
 
 profilePopupOpenButtonElement.addEventListener('click', function(){openPopup(profilePopupElement)});
 profilePopupCloseButtonElement.addEventListener('click', function(){closePopup(profilePopupElement)});
