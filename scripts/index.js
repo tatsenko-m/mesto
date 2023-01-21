@@ -74,6 +74,11 @@ function createCard (cardTitle, cardLink) {
   cardImageElement.src = cardLink;
   cardImageElement.alt = 'Фото ' + cardTitle;
 
+  const likeButtonElement = cardElement.querySelector('.card__like-button');
+  likeButtonElement.addEventListener('click', () => {
+    likeButtonElement.classList.toggle('card__like-button_active');
+  });
+
   return cardElement;
 }
 
@@ -102,5 +107,6 @@ editProfileFormElement.addEventListener('submit', handleEditProfileFormSubmit);
 cardPopupOpenButtonElement.addEventListener('click', function(){openPopup(cardPopupElement)});
 cardPopupCloseButtonElement.addEventListener('click', function(){closePopup(cardPopupElement)});
 addCardFormElement.addEventListener('submit', handleAddCardFormSubmit);
+
 
 
