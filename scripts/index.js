@@ -79,6 +79,11 @@ function createCard (cardTitle, cardLink) {
     likeButtonElement.classList.toggle('card__like-button_active');
   });
 
+  const deleteButtonElement = cardElement.querySelector('.card__delete-button');
+  deleteButtonElement.addEventListener('click', () => {
+    cardElement.remove();
+  });
+
   return cardElement;
 }
 
