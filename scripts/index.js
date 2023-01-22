@@ -27,8 +27,12 @@ const initialCards = [
 
 const profilePopupElement = document.querySelector('.popup_act_edit-profile');
 const cardPopupElement = document.querySelector('.popup_act_add-card');
+const openImagePopupElement = document.querySelector('.popup_act_open-img');
+const fullSizeImageFromPopupElement = openImagePopupElement.querySelector('.popup__image');
+const captionFromPopupElement = openImagePopupElement.querySelector('.popup__caption');
 const profilePopupCloseButtonElement = profilePopupElement.querySelector('.popup__close-button');
 const cardPopupCloseButtonElement = cardPopupElement.querySelector('.popup__close-button');
+const imagePopupCloseButtonElement = openImagePopupElement.querySelector('.popup__close-button');
 const profilePopupOpenButtonElement = document.querySelector('.profile__edit-button');
 const cardPopupOpenButtonElement = document.querySelector('.profile__add-button');
 const editProfileFormElement = profilePopupElement.querySelector('.popup__form');
@@ -74,6 +78,13 @@ function createCard (cardTitle, cardLink) {
   cardImageElement.src = cardLink;
   cardImageElement.alt = 'Фото ' + cardTitle;
 
+  cardImageElement.addEventListener('click', () => {
+    fullSizeImageFromPopupElement.src = cardLink;
+    fullSizeImageFromPopupElement.alt = 'Фото ' + cardTitle;
+    captionFromPopupElement.textContent = cardTitle;
+    openPopup(openImagePopupElement);
+  });
+
   const likeButtonElement = cardElement.querySelector('.card__like-button');
   likeButtonElement.addEventListener('click', () => {
     likeButtonElement.classList.toggle('card__like-button_active');
@@ -112,6 +123,8 @@ editProfileFormElement.addEventListener('submit', handleEditProfileFormSubmit);
 cardPopupOpenButtonElement.addEventListener('click', function(){openPopup(cardPopupElement)});
 cardPopupCloseButtonElement.addEventListener('click', function(){closePopup(cardPopupElement)});
 addCardFormElement.addEventListener('submit', handleAddCardFormSubmit);
+
+imagePopupCloseButtonElement.addEventListener('click', function(){closePopup(openImagePopupElement)});
 
 
 
