@@ -51,6 +51,11 @@ function assignValuesToEditProfileFormInputs() {
   aboutInput.value = profileSubtitleElement.textContent;
 }
 
+function resetAddCardFormInputs() {
+  titleInput.value = '';
+  linkInput.value = '';
+}
+
 const openPopup = function (element) {
   element.classList.add('popup_opened');
   if (element = profilePopupElement) assignValuesToEditProfileFormInputs();
@@ -59,6 +64,7 @@ const openPopup = function (element) {
 const closePopup = function (element) {
   element.classList.remove('popup_opened');
   if (element = profilePopupElement) assignValuesToEditProfileFormInputs();
+  if (element = cardPopupElement) resetAddCardFormInputs();
 };
 
 function handleEditProfileFormSubmit(evt) {
@@ -108,8 +114,6 @@ function handleAddCardFormSubmit(evt) {
   const cardLink = `${linkInput.value}`;
   renderCard (cardTitle, cardLink);
   closePopup(cardPopupElement);
-  titleInput.value = '';
-  linkInput.value = '';
 }
 
 initialCards.forEach((item) => {
