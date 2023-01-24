@@ -45,6 +45,7 @@ const profileTitleElement = document.querySelector('.profile__title');
 const profileSubtitleElement = document.querySelector('.profile__subtitle');
 const cardTemplate = document.querySelector('#card-template');
 const cardsGallery = document.querySelector('.gallery__list');
+const cardElement = cardTemplate.content.querySelector('.card');
 
 function assignValuesToEditProfileFormInputs() {
   nameInput.value = profileTitleElement.textContent;
@@ -87,12 +88,12 @@ function handleEditProfileFormSubmit(evt) {
 }
 
 function createCard (cardTitle, cardLink) {
-  const cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
+  const cardElementCopy = cardElement.cloneNode(true);
 
-  const cardTitleElement = cardElement.querySelector('.card__title');
+  const cardTitleElement = cardElementCopy.querySelector('.card__title');
   cardTitleElement.textContent = cardTitle;
 
-  const cardImageElement = cardElement.querySelector('.card__image');
+  const cardImageElement = cardElementCopy.querySelector('.card__image');
   cardImageElement.src = cardLink;
   cardImageElement.alt = 'Фото ' + cardTitle;
 
@@ -103,17 +104,17 @@ function createCard (cardTitle, cardLink) {
     openPopup(imagePopup);
   });
 
-  const likeButtonElement = cardElement.querySelector('.card__like-button');
+  const likeButtonElement = cardElementCopy.querySelector('.card__like-button');
   likeButtonElement.addEventListener('click', () => {
     likeButtonElement.classList.toggle('card__like-button_active');
   });
 
-  const deleteButtonElement = cardElement.querySelector('.card__delete-button');
+  const deleteButtonElement = cardElementCopy.querySelector('.card__delete-button');
   deleteButtonElement.addEventListener('click', () => {
-    cardElement.remove();
+    cardElementCopy.remove();
   });
 
-  return cardElement;
+  return cardElementCopy;
 }
 
 function renderCard (cardTitle, cardLink) {
