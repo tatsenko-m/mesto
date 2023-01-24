@@ -25,11 +25,6 @@ function assignValuesToEditProfileFormInputs() {
   aboutInput.value = profileSubtitleElement.textContent;
 }
 
-function resetAddCardFormInputs() {
-  titleInput.value = '';
-  linkInput.value = '';
-}
-
 const openPopup = function (element) {
   element.classList.add('popup_opened');
 };
@@ -49,7 +44,7 @@ function closeProfilePopup() {
 }
 
 function closeCardPopup() {
-  resetAddCardFormInputs();
+  cardForm.reset();
   closePopup(cardPopupElement);
 }
 
