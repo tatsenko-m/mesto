@@ -50,8 +50,8 @@ function closeCardPopup() {
 
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileTitleElement.textContent = `${nameInput.value}`;
-  profileSubtitleElement.textContent = `${aboutInput.value}`;
+  profileTitleElement.textContent = nameInput.value;
+  profileSubtitleElement.textContent = aboutInput.value;
   closeProfilePopup();
 }
 
@@ -91,8 +91,8 @@ function renderCard (cardTitle, cardLink) {
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  const cardTitle = `${titleInput.value}`;
-  const cardLink = `${linkInput.value}`;
+  const cardTitle = titleInput.value;
+  const cardLink = linkInput.value;
   renderCard (cardTitle, cardLink);
   closeCardPopup();
 }
