@@ -2,8 +2,8 @@
   display: block;
   border: none;
   width: 100%;
-  margin: 0 0 30px;
-  padding: 0 0 8px;
+  margin: 0;
+  padding: 0 0 12px;
   box-sizing: border-box;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background-color: transparent;
