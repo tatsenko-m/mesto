@@ -32,6 +32,12 @@ const openPopup = function (element) {
 function openProfilePopup() {
   assignValuesToEditProfileFormInputs();
   openPopup(profilePopupElement);
+  enableValidation(formValidationConfig);
+}
+
+function openCardPopup() {
+  openPopup(cardPopupElement);
+  enableValidation(formValidationConfig);
 }
 
 const closePopup = function (element) {
@@ -41,11 +47,13 @@ const closePopup = function (element) {
 function closeProfilePopup() {
   assignValuesToEditProfileFormInputs();
   closePopup(profilePopupElement);
+  hideAllInputErrors(formValidationConfig);
 }
 
 function closeCardPopup() {
   cardForm.reset();
   closePopup(cardPopupElement);
+  hideAllInputErrors(formValidationConfig);
 }
 
 function handleEditProfileFormSubmit(evt) {
@@ -105,7 +113,7 @@ profilePopupOpenButtonElement.addEventListener('click', openProfilePopup);
 profilePopupCloseButtonElement.addEventListener('click', closeProfilePopup);
 profileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
-cardPopupOpenButtonElement.addEventListener('click', function(){openPopup(cardPopupElement)});
+cardPopupOpenButtonElement.addEventListener('click', openCardPopup);
 cardPopupCloseButtonElement.addEventListener('click', closeCardPopup);
 cardForm.addEventListener('submit', handleAddCardFormSubmit);
 

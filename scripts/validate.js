@@ -21,9 +21,15 @@ function hideInputError(input, config) {
   errorElement.classList.remove(config.errorClass);
 }
 
-function handleFormInput(event, config) {
-  const input = event.target;
+function hideAllInputErrors(config) {
+  const inputList = Array.from(document.querySelectorAll(config.inputSelector));
 
+  inputList.forEach((inputElement) => {
+    hideInputError(inputElement, config);
+  });
+}
+
+function handleFormInput(input, config) {
   if (input.validity.valid) {
     hideInputError(input, config);
   } else {
@@ -41,8 +47,8 @@ function setInputListeners(form, config) {
   const inputList = Array.from(form.querySelectorAll(config.inputSelector));
 
   inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', (event) => {
-      handleFormInput(event, config);
+    inputElement.addEventListener('input', () => {
+      handleFormInput(inputElement, config);
     });
   });
 }
@@ -62,8 +68,6 @@ function enableValidation(config) {
 
   });
 }
-
-enableValidation(formValidationConfig);
 
 
 
