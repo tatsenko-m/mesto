@@ -4,7 +4,6 @@
   margin: 18px 0 0;
   padding: 14px;
   box-sizing: border-box;
-  cursor: pointer;
   border: none;
   background-color: #000000;
   border-radius: 2px;
@@ -21,8 +20,9 @@
   transition: opacity 1s;
 }
 
-.popup__save-button:hover {
+.popup__save-button:not([disabled]):hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 526px) {
