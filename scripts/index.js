@@ -74,6 +74,24 @@ function closeCardPopupByClickOnOverlay(event) {
   }
 }
 
+function closePopupByPressEsc(event, element) {
+  if (event.key === 'Escape') {
+    closePopup(element);
+  }
+}
+
+function closeProfilePopupByPressEsc(event) {
+  if (event.key === 'Escape') {
+    closeProfilePopup();
+  }
+}
+
+function closeCardPopupByPressEsc(event) {
+  if (event.key === 'Escape') {
+    closeCardPopup();
+  }
+}
+
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitleElement.textContent = nameInput.value;
@@ -140,6 +158,10 @@ imagePopupCloseButtonElement.addEventListener('click', function(){closePopup(ima
 profilePopupElement.addEventListener('click', closeProfilePopupByClickOnOverlay);
 cardPopupElement.addEventListener('click', closeCardPopupByClickOnOverlay);
 imagePopup.addEventListener('click', function(evt){closePopupByClickOnOverlay(evt, imagePopup)});
+
+document.addEventListener('keydown', closeProfilePopupByPressEsc);
+document.addEventListener('keydown', closeCardPopupByPressEsc);
+document.addEventListener('keydown', function(evt){closePopupByPressEsc(evt, imagePopup)});
 
 
 
