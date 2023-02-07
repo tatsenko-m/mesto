@@ -33,11 +33,18 @@ function openProfilePopup() {
   assignValuesToEditProfileFormInputs();
   openPopup(profilePopupElement);
   enableValidation(formValidationConfig);
+  document.addEventListener('keydown', closeProfilePopupByPressEsc);
 }
 
 function openCardPopup() {
   openPopup(cardPopupElement);
   enableValidation(formValidationConfig);
+  document.addEventListener('keydown', closeCardPopupByPressEsc);
+}
+
+function openImagePopup() {
+  openPopup(imagePopup);
+  document.addEventListener('keydown', closeImagePopupByPressEsc);
 }
 
 const closePopup = function (element) {
@@ -48,12 +55,19 @@ function closeProfilePopup() {
   assignValuesToEditProfileFormInputs();
   closePopup(profilePopupElement);
   hideAllInputErrors(formValidationConfig);
+  document.removeEventListener('keydown', closeProfilePopupByPressEsc);
 }
 
 function closeCardPopup() {
   cardForm.reset();
   closePopup(cardPopupElement);
   hideAllInputErrors(formValidationConfig);
+  document.removeEventListener('keydown', closeCardPopupByPressEsc);
+}
+
+function closeImagePopup() {
+  closePopup(imagePopup);
+  document.removeEventListener('keydown', closeImagePopupByPressEsc);
 }
 
 function closePopupByClickOnOverlay(event, element) {
@@ -92,6 +106,12 @@ function closeCardPopupByPressEsc(event) {
   }
 }
 
+function closeImagePopupByPressEsc(event) {
+  if (event.key === 'Escape') {
+    closeImagePopup();
+  }
+}
+
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitleElement.textContent = nameInput.value;
@@ -113,7 +133,7 @@ function createCard (cardTitle, cardLink) {
     fullSizeImageFromPopupElement.src = cardLink;
     fullSizeImageFromPopupElement.alt = 'Фото ' + cardTitle;
     captionFromPopupElement.textContent = cardTitle;
-    openPopup(imagePopup);
+    openImagePopup();
   });
 
   const likeButtonElement = cardElementCopy.querySelector('.card__like-button');
@@ -153,15 +173,11 @@ cardPopupOpenButtonElement.addEventListener('click', openCardPopup);
 cardPopupCloseButtonElement.addEventListener('click', closeCardPopup);
 cardForm.addEventListener('submit', handleAddCardFormSubmit);
 
-imagePopupCloseButtonElement.addEventListener('click', function(){closePopup(imagePopup)});
+imagePopupCloseButtonElement.addEventListener('click', closeImagePopup);
 
 profilePopupElement.addEventListener('click', closeProfilePopupByClickOnOverlay);
 cardPopupElement.addEventListener('click', closeCardPopupByClickOnOverlay);
 imagePopup.addEventListener('click', function(evt){closePopupByClickOnOverlay(evt, imagePopup)});
-
-document.addEventListener('keydown', closeProfilePopupByPressEsc);
-document.addEventListener('keydown', closeCardPopupByPressEsc);
-document.addEventListener('keydown', function(evt){closePopupByPressEsc(evt, imagePopup)});
 
 
 
