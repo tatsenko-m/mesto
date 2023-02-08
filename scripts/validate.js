@@ -65,7 +65,11 @@ function enableValidation(config) {
     });
     setInputListeners(formElement, config);
     toggleSubmitButton(formElement, config);
-
+    formElement.addEventListener('reset', () => {
+      setTimeout(() => {
+        toggleSubmitButton(formElement, config);
+      }, 0);
+    });
   });
 }
 
