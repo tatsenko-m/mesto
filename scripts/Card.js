@@ -1,3 +1,5 @@
+import { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement, openPopup } from './index.js';
+
 class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -46,16 +48,18 @@ class Card {
     this._likeButtonElement = this._element.querySelector('.card__like-button');
     this._deleteButtonElement = this._element.querySelector('.card__delete-button');
 
-    this._cardImageElement.addEventListener.('click', () => {
+    this._cardImageElement.addEventListener('click', () => {
       this._handleOpenCardPopup();
     });
 
-    this._likeButtonElement.addEventListener.('click', () => {
+    this._likeButtonElement.addEventListener('click', () => {
       this._handleLikeCard();
     });
 
-    this._deleteButtonElement.addEventListener.('click', () => {
+    this._deleteButtonElement.addEventListener('click', () => {
       this._handleDeleteCard();
     });
   }
 }
+
+export default Card;
