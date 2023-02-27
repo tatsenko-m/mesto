@@ -1,4 +1,5 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const initialCards = [
   {
@@ -27,6 +28,15 @@ const initialCards = [
   }
 ];
 
+const formValidationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__item_type_error',
+  errorClass: 'popup__error_visible'
+};
+
 const profilePopupElement = document.querySelector('.popup_act_edit-profile');
 const cardPopupElement = document.querySelector('.popup_act_add-card');
 export const imagePopup = document.querySelector('.popup_act_open-img');
@@ -42,9 +52,7 @@ const titleInput = cardForm.querySelector('.popup__item_type_title');
 const linkInput = cardForm.querySelector('.popup__item_type_link');
 const profileTitleElement = document.querySelector('.profile__title');
 const profileSubtitleElement = document.querySelector('.profile__subtitle');
-//const cardTemplate = document.querySelector('#card-template');
 const cardsGallery = document.querySelector('.gallery__list');
-//const cardElement = cardTemplate.content.querySelector('.card');
 
 function assignValuesToEditProfileFormInputs() {
   nameInput.value = profileTitleElement.textContent;
@@ -59,7 +67,7 @@ export const openPopup = function (element) {
 function openProfilePopup() {
   assignValuesToEditProfileFormInputs();
   openPopup(profilePopupElement);
-  hideAllInputErrors(formValidationConfig);
+  //hideAllInputErrors(formValidationConfig);
 }
 
 const closePopup = function (element) {
@@ -96,58 +104,30 @@ function handleEditProfileFormSubmit(evt) {
   closePopup(profilePopupElement);
 }
 
-//function createCard (cardTitle, cardLink) {
-//  const cardElementCopy = cardElement.cloneNode(true);
-//
-//  const cardTitleElement = cardElementCopy.querySelector('.card__title');
-//  cardTitleElement.textContent = cardTitle;
-//
-//  const cardImageElement = cardElementCopy.querySelector('.card__image');
-//  cardImageElement.src = cardLink;
-//  cardImageElement.alt = 'Фото ' + cardTitle;
-//
-//  cardImageElement.addEventListener('click', () => {
-//    fullSizeImageFromPopupElement.src = cardLink;
-//    fullSizeImageFromPopupElement.alt = 'Фото ' + cardTitle;
-//    captionFromPopupElement.textContent = cardTitle;
-//    openPopup(imagePopup);
-//  });
-//
-//  const likeButtonElement = cardElementCopy.querySelector('.card__like-button');
-//  likeButtonElement.addEventListener('click', () => {
-//    likeButtonElement.classList.toggle('card__like-button_active');
-//  });
-//
-//  const deleteButtonElement = cardElementCopy.querySelector('.card__delete-button');
-//  deleteButtonElement.addEventListener('click', () => {
-//    cardElementCopy.remove();
-//  });
-//
-//  return cardElementCopy;
-//}
+function renderCard(data) {
+  const card = new Card(data, '#card-template');
+  const cardElement = card.createCard();
 
-//function renderCard (cardTitle, cardLink) {
-//  cardsGallery.prepend(createCard(cardTitle, cardLink));
-//}
+  cardsGallery.prepend(cardElement);
+}
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  const cardTitle = titleInput.value;
-  const cardLink = linkInput.value;
-  renderCard (cardTitle, cardLink);
+  const newData = {
+    name: `${titleInput.value}`,
+    link: `${linkInput.value}`
+  };
+  renderCard(newData);
   cardForm.reset();
   closePopup(cardPopupElement);
 }
 
-//initialCards.forEach((item) => {
-//  renderCard(item.name, item.link);
-//});
-
 initialCards.forEach((item) => {
-  const card = new Card(item, '#card-template');
-  const cardElement = card.createCard();
+  renderCard(item);
+  // const card = new Card(item, '#card-template');
+  // const cardElement = card.createCard();
 
-  cardsGallery.prepend(cardElement);
+  // cardsGallery.prepend(cardElement);
 });
 
 profilePopupOpenButtonElement.addEventListener('click', openProfilePopup);
@@ -158,7 +138,12 @@ handleOverlayAndCloseButtonMousedown();
 profileForm.addEventListener('submit', handleEditProfileFormSubmit);
 cardForm.addEventListener('submit', handleAddCardFormSubmit);
 
-enableValidation(formValidationConfig);
+//enableValidation(formValidationConfig);
+const profileFormValidator = new FormValidator(formValidationConfig, profileForm);
+const cardFormValidator = new FormValidator(formValidationConfig, cardForm);
+
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
 
 
