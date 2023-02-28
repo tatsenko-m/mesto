@@ -16,7 +16,7 @@ class FormValidator {
     errorElement.classList.add(this._errorClass);
   }
 
-  _hideInputError(input) {
+  hideInputError(input) {
     const errorElement = this._formElement.querySelector(`#${input.id}-error`);
     input.classList.remove(this._inputErrorClass);
     errorElement.textContent = '';
@@ -25,7 +25,7 @@ class FormValidator {
 
   _handleFormInput(input) {
     if (input.validity.valid) {
-      this._hideInputError(input);
+      this.hideInputError(input);
     } else {
       this._showInputError(input);
     }
@@ -65,71 +65,3 @@ class FormValidator {
 }
 
 export default FormValidator;
-
-
-
-// function showInputError(input, config) {
-//   const errorElement = document.querySelector(`#${input.id}-error`);
-//   input.classList.add(config.inputErrorClass);
-//   errorElement.textContent = input.validationMessage;
-//   errorElement.classList.add(config.errorClass);
-// }
-
-// function hideInputError(input, config) {
-//   const errorElement = document.querySelector(`#${input.id}-error`);
-//   input.classList.remove(config.inputErrorClass);
-//   errorElement.textContent = '';
-//   errorElement.classList.remove(config.errorClass);
-// }
-
-// function hideAllInputErrors(config) {
-//   const inputList = Array.from(document.querySelectorAll(config.inputSelector));
-
-//   inputList.forEach((inputElement) => {
-//     hideInputError(inputElement, config);
-//   });
-// }
-
-// function handleFormInput(input, config) {
-//   if (input.validity.valid) {
-//     hideInputError(input, config);
-//   } else {
-//     showInputError(input, config);
-//   }
-// }
-
-// function toggleSubmitButton(form, config) {
-//   const buttonSubmit = form.querySelector(config.submitButtonSelector);
-//   buttonSubmit.disabled = !form.checkValidity();
-//   buttonSubmit.classList.toggle(config.inactiveButtonClass, !form.checkValidity());
-// }
-
-// function setInputListeners(form, config) {
-//   const inputListLocal = Array.from(form.querySelectorAll(config.inputSelector));
-
-//   inputListLocal.forEach((inputElement) => {
-//     inputElement.addEventListener('input', () => {
-//       handleFormInput(inputElement, config);
-//     });
-//   });
-// }
-
-// function enableValidation(config) {
-//   const formList = Array.from(document.querySelectorAll(config.formSelector));
-
-//   formList.forEach((formElement) => {
-//     formElement.addEventListener('submit', (evt) => {
-//       evt.preventDefault();
-//     });
-//     formElement.addEventListener('input', () => {
-//       toggleSubmitButton(formElement, config);
-//     });
-//     setInputListeners(formElement, config);
-//     toggleSubmitButton(formElement, config);
-//     formElement.addEventListener('reset', () => {
-//       setTimeout(() => {
-//         toggleSubmitButton(formElement, config);
-//       }, 0);
-//     });
-//   });
-// }

@@ -1,6 +1,7 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
+// Данные шести исходных карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -28,6 +29,7 @@ const initialCards = [
   }
 ];
 
+// Объект настроек валидации
 const formValidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__item',
@@ -46,6 +48,7 @@ const profilePopupOpenButtonElement = document.querySelector('.profile__edit-but
 const cardPopupOpenButtonElement = document.querySelector('.profile__add-button');
 const profileForm = document.forms['editProfile'];
 const cardForm = document.forms['addCard'];
+const profileFormInputList = Array.from(profileForm.querySelectorAll('.popup__item'));
 const nameInput = profileForm.querySelector('.popup__item_type_name');
 const aboutInput = profileForm.querySelector('.popup__item_type_about');
 const titleInput = cardForm.querySelector('.popup__item_type_title');
@@ -53,6 +56,8 @@ const linkInput = cardForm.querySelector('.popup__item_type_link');
 const profileTitleElement = document.querySelector('.profile__title');
 const profileSubtitleElement = document.querySelector('.profile__subtitle');
 const cardsGallery = document.querySelector('.gallery__list');
+const profileFormValidator = new FormValidator(formValidationConfig, profileForm);
+const cardFormValidator = new FormValidator(formValidationConfig, cardForm);
 
 function assignValuesToEditProfileFormInputs() {
   nameInput.value = profileTitleElement.textContent;
@@ -67,7 +72,9 @@ export const openPopup = function (element) {
 function openProfilePopup() {
   assignValuesToEditProfileFormInputs();
   openPopup(profilePopupElement);
-  //hideAllInputErrors(formValidationConfig);
+  profileFormInputList.forEach((inputElement) => {
+    profileFormValidator.hideInputError(inputElement);
+  });
 }
 
 const closePopup = function (element) {
@@ -113,21 +120,17 @@ function renderCard(data) {
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  const newData = {
+  const userData = {
     name: `${titleInput.value}`,
     link: `${linkInput.value}`
   };
-  renderCard(newData);
+  renderCard(userData);
   cardForm.reset();
   closePopup(cardPopupElement);
 }
 
 initialCards.forEach((item) => {
   renderCard(item);
-  // const card = new Card(item, '#card-template');
-  // const cardElement = card.createCard();
-
-  // cardsGallery.prepend(cardElement);
 });
 
 profilePopupOpenButtonElement.addEventListener('click', openProfilePopup);
@@ -137,10 +140,6 @@ handleOverlayAndCloseButtonMousedown();
 
 profileForm.addEventListener('submit', handleEditProfileFormSubmit);
 cardForm.addEventListener('submit', handleAddCardFormSubmit);
-
-//enableValidation(formValidationConfig);
-const profileFormValidator = new FormValidator(formValidationConfig, profileForm);
-const cardFormValidator = new FormValidator(formValidationConfig, cardForm);
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
