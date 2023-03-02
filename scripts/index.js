@@ -1,4 +1,4 @@
-import { openPopup } from './common.js';
+import { openPopup, closePopup } from './common.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -70,11 +70,6 @@ function openProfilePopup() {
   });
 }
 
-const closePopup = function (element) {
-  element.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByPressEsc);
-};
-
 function handleOverlayAndCloseButtonMousedown() {
   const popupList = document.querySelectorAll('.popup')
 
@@ -88,13 +83,6 @@ function handleOverlayAndCloseButtonMousedown() {
       }
     })
   })
-}
-
-function closePopupByPressEsc(event) {
-  if (event.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
 }
 
 function handleEditProfileFormSubmit(evt) {

@@ -7,4 +7,16 @@ const openPopup = function (element) {
   document.addEventListener('keydown', closePopupByPressEsc);
 };
 
-export { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement, openPopup };
+const closePopup = function (element) {
+  element.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByPressEsc);
+};
+
+function closePopupByPressEsc(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+export { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement, openPopup, closePopup, closePopupByPressEsc };
