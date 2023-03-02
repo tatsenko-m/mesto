@@ -1,3 +1,4 @@
+import { openPopup } from './common.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -41,9 +42,6 @@ const formValidationConfig = {
 
 const profilePopupElement = document.querySelector('.popup_act_edit-profile');
 const cardPopupElement = document.querySelector('.popup_act_add-card');
-export const imagePopup = document.querySelector('.popup_act_open-img');
-export const fullSizeImageFromPopupElement = imagePopup.querySelector('.popup__image');
-export const captionFromPopupElement = imagePopup.querySelector('.popup__caption');
 const profilePopupOpenButtonElement = document.querySelector('.profile__edit-button');
 const cardPopupOpenButtonElement = document.querySelector('.profile__add-button');
 const profileForm = document.forms['editProfile'];
@@ -63,11 +61,6 @@ function assignValuesToEditProfileFormInputs() {
   nameInput.value = profileTitleElement.textContent;
   aboutInput.value = profileSubtitleElement.textContent;
 }
-
-export const openPopup = function (element) {
-  element.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByPressEsc);
-};
 
 function openProfilePopup() {
   assignValuesToEditProfileFormInputs();
