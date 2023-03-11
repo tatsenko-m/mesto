@@ -1,4 +1,5 @@
-import { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement, openPopup } from '../scripts/common.js';
+import { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement } from '../utils/constants.js';
+import { openPopup } from '../utils/utils.js';
 
 class Card {
   constructor(data, templateSelector) {
