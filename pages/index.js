@@ -1,7 +1,7 @@
 import initialCards from '../scripts/cards.js';
 import { openPopup, closePopup } from '../scripts/common.js';
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
 
 // Объект настроек валидации
 const formValidationConfig = {

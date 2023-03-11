@@ -1,4 +1,4 @@
-import { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement, openPopup } from './common.js';
+import { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement, openPopup } from '../scripts/common.js';
 
 class Card {
   constructor(data, templateSelector) {
