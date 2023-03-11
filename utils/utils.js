@@ -1,3 +1,11 @@
+import {
+  profilePopupElement,
+  nameInput,
+  aboutInput,
+  profileTitleElement,
+  profileSubtitleElement
+ } from './constants.js';
+
 export const openPopup = function (element) {
   element.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByPressEsc);
@@ -13,4 +21,31 @@ export function closePopupByPressEsc(event) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
+}
+
+export function assignValuesToEditProfileFormInputs() {
+  nameInput.value = profileTitleElement.textContent;
+  aboutInput.value = profileSubtitleElement.textContent;
+}
+
+export function handleOverlayAndCloseButtonMousedown() {
+  const popupList = document.querySelectorAll('.popup')
+
+  popupList.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+        closePopup(popup);
+      }
+      if (evt.target.classList.contains('popup__close-button')) {
+        closePopup(popup);
+      }
+    })
+  })
+}
+
+export function handleEditProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileTitleElement.textContent = nameInput.value;
+  profileSubtitleElement.textContent = aboutInput.value;
+  closePopup(profilePopupElement);
 }
