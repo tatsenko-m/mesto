@@ -13,6 +13,7 @@ import {
 } from '../utils/utils.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
 
 const cardPopupElement = document.querySelector('.popup_act_add-card');
 const profilePopupOpenButtonElement = document.querySelector('.profile__edit-button');
@@ -21,7 +22,7 @@ const cardForm = document.forms['addCard'];
 const profileFormInputList = Array.from(profileForm.querySelectorAll('.popup__item'));
 const titleInput = cardForm.querySelector('.popup__item_type_title');
 const linkInput = cardForm.querySelector('.popup__item_type_link');
-const cardsGallery = document.querySelector('.gallery__list');
+const cardListSelector = '.gallery__list';
 const profileFormValidator = new FormValidator(formValidationConfig, profileForm);
 const cardFormValidator = new FormValidator(formValidationConfig, cardForm);
 
@@ -33,27 +34,22 @@ function openProfilePopup() {
   });
 }
 
-function renderCard(data) {
-  const card = new Card(data, '#card-template');
+const cardList = new Section({ items: initialCards, renderer: ({ name, link }) => {
+  const card = new Card({ name, link }, '#card-template');
   const cardElement = card.createCard();
-
-  cardsGallery.prepend(cardElement);
-}
+  cardList.addItem(cardElement);
+} }, cardListSelector);
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  const userData = {
-    name: `${titleInput.value}`,
-    link: `${linkInput.value}`
-  };
-  renderCard(userData);
+  const userCard = new Card({ name: titleInput.value, link: linkInput.value}, '#card-template');
+  const userCardElement = userCard.createCard();
+  cardList.addItem(userCardElement);
   cardForm.reset();
   closePopup(cardPopupElement);
 }
 
-initialCards.forEach((item) => {
-  renderCard(item);
-});
+cardList.renderItems();
 
 profilePopupOpenButtonElement.addEventListener('click', openProfilePopup);
 cardPopupOpenButtonElement.addEventListener('click', function(){openPopup(cardPopupElement)});
