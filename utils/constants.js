@@ -35,8 +35,8 @@ export const formValidationConfig = {
 };
 
 export const imagePopup = document.querySelector('.popup_act_open-img');
-export const fullSizeImageFromPopupElement = imagePopup.querySelector('.popup__image');
-export const captionFromPopupElement = imagePopup.querySelector('.popup__caption');
+// export const fullSizeImageFromPopupElement = imagePopup.querySelector('.popup__image');
+// export const captionFromPopupElement = imagePopup.querySelector('.popup__caption');
 export const profilePopupElement = document.querySelector('.popup_act_edit-profile');
 export const profileForm = document.forms['editProfile'];
 export const nameInput = profileForm.querySelector('.popup__item_type_name');

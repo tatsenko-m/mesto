@@ -1,11 +1,12 @@
-import { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement } from '../utils/constants.js';
-import { openPopup } from '../utils/utils.js';
+// import { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement } from '../utils/constants.js';
+// import { openPopup } from '../utils/utils.js';
 
 class Card {
-  constructor({ name, link }, templateSelector) {
+  constructor({ name, link }, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -30,12 +31,12 @@ class Card {
     return this._element;
   }
 
-  _handleOpenCardPopup() {
-    fullSizeImageFromPopupElement.src = this._link;
-    fullSizeImageFromPopupElement.alt = 'Фото ' + this._name;
-    captionFromPopupElement.textContent = this._name;
-    openPopup(imagePopup);
-  }
+  // _handleOpenCardPopup() {
+  //   fullSizeImageFromPopupElement.src = this._link;
+  //   fullSizeImageFromPopupElement.alt = 'Фото ' + this._name;
+  //   captionFromPopupElement.textContent = this._name;
+  //   openPopup(imagePopup);
+  // }
 
   _handleDeleteCard() {
     this._element.remove();
@@ -51,7 +52,7 @@ class Card {
     this._deleteButtonElement = this._element.querySelector('.card__delete-button');
 
     this._cardImageElement.addEventListener('click', () => {
-      this._handleOpenCardPopup();
+      this._handleCardClick(this._name, this._link);
     });
 
     this._likeButtonElement.addEventListener('click', () => {
