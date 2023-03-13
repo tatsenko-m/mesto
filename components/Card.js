@@ -1,6 +1,3 @@
-// import { imagePopup, fullSizeImageFromPopupElement, captionFromPopupElement } from '../utils/constants.js';
-// import { openPopup } from '../utils/utils.js';
-
 class Card {
   constructor({ name, link }, templateSelector, handleCardClick) {
     this._name = name;
@@ -30,13 +27,6 @@ class Card {
 
     return this._element;
   }
-
-  // _handleOpenCardPopup() {
-  //   fullSizeImageFromPopupElement.src = this._link;
-  //   fullSizeImageFromPopupElement.alt = 'Фото ' + this._name;
-  //   captionFromPopupElement.textContent = this._name;
-  //   openPopup(imagePopup);
-  // }
 
   _handleDeleteCard() {
     this._element.remove();

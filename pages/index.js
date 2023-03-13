@@ -28,6 +28,11 @@ const titleInput = cardForm.querySelector('.popup__item_type_title');
 const linkInput = cardForm.querySelector('.popup__item_type_link');
 const cardListSelector = '.gallery__list';
 const popupWithImageSelector = '.popup_act_open-img';
+const popupWithEditProfileFormSelector = '.popup_act_edit-profile';
+const profileElementSelectors = {
+  profileTitleSelector: '.profile__title',
+  profileSubtitleSelector: '.profile__subtitle'
+};
 
 const profileFormValidator = new FormValidator(formValidationConfig, profileForm);
 const cardFormValidator = new FormValidator(formValidationConfig, cardForm);
@@ -39,6 +44,16 @@ function openProfilePopup() {
     profileFormValidator.hideInputError(inputElement);
   });
 }
+
+const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelector, (data) => {
+  const userInfo = new UserInfo(profileElementSelectors);
+  userInfo.setUserInfo(data.name, data.about);
+  popupWithEditProfileForm.close();
+});
+
+popupWithEditProfileForm.setEventListeners();
+
+//const popupWithAddCardForm = new PopupWithForm();
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 
@@ -68,7 +83,7 @@ cardPopupOpenButtonElement.addEventListener('click', function(){openPopup(cardPo
 
 handleOverlayAndCloseButtonMousedown();
 
-profileForm.addEventListener('submit', handleEditProfileFormSubmit);
+//profileForm.addEventListener('submit', handleEditProfileFormSubmit);
 cardForm.addEventListener('submit', handleAddCardFormSubmit);
 
 profileFormValidator.enableValidation();

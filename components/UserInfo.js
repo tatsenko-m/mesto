@@ -7,11 +7,11 @@ class UserInfo {
   }
 
   getUserInfo() {
-    const userInfo = {
+    const currentUserInfo = {
       name: `${this._profileTitleElement.textContent}`,
       about: `${this._profileSubtitleElement.textContent}`
     };
-    return userInfo;
+    return currentUserInfo;
   }
 
   setUserInfo(name, about) {
