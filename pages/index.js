@@ -9,7 +9,7 @@ import {
 import {
   openPopup,
   closePopup,
-  handleOverlayAndCloseButtonMousedown
+  //handleOverlayAndCloseButtonMousedown
 } from '../utils/utils.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -57,6 +57,10 @@ function openProfilePopup() {
   });
 }
 
+const popupWithImage = new PopupWithImage(popupWithImageSelector);
+
+popupWithImage.setEventListeners();
+
 const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (data) => {
   const userCard = new Card({ name: data.title, link: data.link}, '#card-template', (name, link) => {
     popupWithImage.open(name, link);
@@ -69,7 +73,7 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
 
 popupWithAddCardForm.setEventListeners();
 
-const popupWithImage = new PopupWithImage(popupWithImageSelector);
+//const popupWithImage = new PopupWithImage(popupWithImageSelector);
 
 const cardList = new Section({ items: initialCards, renderer: ({ name, link }) => {
   const card = new Card({ name, link }, '#card-template', (name, link) => {
@@ -84,7 +88,7 @@ cardList.renderItems();
 profilePopupOpenButtonElement.addEventListener('click', openProfilePopup);
 cardPopupOpenButtonElement.addEventListener('click', function(){openPopup(cardPopupElement)});
 
-handleOverlayAndCloseButtonMousedown();
+//handleOverlayAndCloseButtonMousedown();
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();

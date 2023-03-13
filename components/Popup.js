@@ -15,7 +15,7 @@ class Popup {
   }
 
   _handleEscClose(event) {
-    if (event.key === 'Escape' && this._popupElement.classList.contains('.popup_opened')) {
+    if (event.key === 'Escape') {
       this.close();
     }
   }
