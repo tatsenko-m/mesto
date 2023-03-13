@@ -34,12 +34,19 @@ export const formValidationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-export const imagePopup = document.querySelector('.popup_act_open-img');
-// export const fullSizeImageFromPopupElement = imagePopup.querySelector('.popup__image');
-// export const captionFromPopupElement = imagePopup.querySelector('.popup__caption');
-export const profilePopupElement = document.querySelector('.popup_act_edit-profile');
 export const profileForm = document.forms['editProfile'];
 export const nameInput = profileForm.querySelector('.popup__item_type_name');
 export const aboutInput = profileForm.querySelector('.popup__item_type_about');
-export const profileTitleElement = document.querySelector('.profile__title');
-export const profileSubtitleElement = document.querySelector('.profile__subtitle');
+export const profilePopupOpenButtonElement = document.querySelector('.profile__edit-button');
+export const cardPopupOpenButtonElement = document.querySelector('.profile__add-button');
+export const cardForm = document.forms['addCard'];
+export const profileFormInputList = Array.from(profileForm.querySelectorAll('.popup__item'));
+export const cardListSelector = '.gallery__list';
+export const popupWithImageSelector = '.popup_act_open-img';
+export const popupWithEditProfileFormSelector = '.popup_act_edit-profile';
+export const popupWithAddCardFormSelector = '.popup_act_add-card';
+export const cardTemplateId = '#card-template';
+export const profileElementSelectors = {
+  profileTitleSelector: '.profile__title',
+  profileSubtitleSelector: '.profile__subtitle'
+};
