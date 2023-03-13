@@ -2,12 +2,13 @@ import {
   initialCards,
   profilePopupElement,
   profileForm,
+  nameInput,
+  aboutInput,
   formValidationConfig
 } from '../utils/constants.js';
 import {
   openPopup,
   closePopup,
-  assignValuesToEditProfileFormInputs,
   handleOverlayAndCloseButtonMousedown
 } from '../utils/utils.js';
 import Card from '../components/Card.js';
@@ -36,21 +37,24 @@ const profileElementSelectors = {
 const profileFormValidator = new FormValidator(formValidationConfig, profileForm);
 const cardFormValidator = new FormValidator(formValidationConfig, cardForm);
 
-function openProfilePopup() {
-  assignValuesToEditProfileFormInputs();
-  openPopup(profilePopupElement);
-  profileFormInputList.forEach((inputElement) => {
-    profileFormValidator.hideInputError(inputElement);
-  });
-}
+const userInfo = new UserInfo(profileElementSelectors);
 
 const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelector, (data) => {
-  const userInfo = new UserInfo(profileElementSelectors);
   userInfo.setUserInfo(data.name, data.about);
   popupWithEditProfileForm.close();
 });
 
 popupWithEditProfileForm.setEventListeners();
+
+function openProfilePopup() {
+  const currentUserInfo = userInfo.getUserInfo();
+  nameInput.value = currentUserInfo.name;
+  aboutInput.value = currentUserInfo.about;
+  openPopup(profilePopupElement);
+  profileFormInputList.forEach((inputElement) => {
+    profileFormValidator.hideInputError(inputElement);
+  });
+}
 
 //const popupWithAddCardForm = new PopupWithForm();
 

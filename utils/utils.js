@@ -23,11 +23,6 @@ export function closePopupByPressEsc(event) {
   }
 }
 
-export function assignValuesToEditProfileFormInputs() {
-  nameInput.value = profileTitleElement.textContent;
-  aboutInput.value = profileSubtitleElement.textContent;
-}
-
 export function handleOverlayAndCloseButtonMousedown() {
   const popupList = document.querySelectorAll('.popup')
 
