@@ -43,9 +43,3 @@ export function handleOverlayAndCloseButtonMousedown() {
   })
 }
 
-export function handleEditProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileTitleElement.textContent = nameInput.value;
-  profileSubtitleElement.textContent = aboutInput.value;
-  closePopup(profilePopupElement);
-}

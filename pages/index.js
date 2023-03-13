@@ -8,8 +8,7 @@ import {
   openPopup,
   closePopup,
   assignValuesToEditProfileFormInputs,
-  handleOverlayAndCloseButtonMousedown,
-  handleEditProfileFormSubmit
+  handleOverlayAndCloseButtonMousedown
 } from '../utils/utils.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -83,7 +82,6 @@ cardPopupOpenButtonElement.addEventListener('click', function(){openPopup(cardPo
 
 handleOverlayAndCloseButtonMousedown();
 
-//profileForm.addEventListener('submit', handleEditProfileFormSubmit);
 cardForm.addEventListener('submit', handleAddCardFormSubmit);
 
 profileFormValidator.enableValidation();
