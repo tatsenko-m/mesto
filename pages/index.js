@@ -50,7 +50,7 @@ function openProfilePopup() {
   const currentUserInfo = userInfo.getUserInfo();
   nameInput.value = currentUserInfo.name;
   aboutInput.value = currentUserInfo.about;
-  openPopup(profilePopupElement);
+  popupWithEditProfileForm.open();
   profileFormInputList.forEach((inputElement) => {
     profileFormValidator.hideInputError(inputElement);
   });
