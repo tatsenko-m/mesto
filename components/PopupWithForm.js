@@ -14,16 +14,10 @@ class PopupWithForm extends Popup {
       inputData[`${item.name}`] = `${item.value}`;
     });
     return inputData;
-
-    //const inputList = Array.from(this._form.querySelectorAll('.popup__item'));
-    //const inputValues = inputList.map((item) => item.value);
-    //const inputValues = inputList.map(item => ({[item.name]: item.value}));
-    //return inputValues;
   }
 
   setEventListeners() {
     super.setEventListeners();
-    //this._values = this._getInputValues();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._inputData = this._getInputValues();
