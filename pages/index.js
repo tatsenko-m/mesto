@@ -15,7 +15,6 @@ import {
   cardTemplateId,
   profileElementSelectors
 } from '../utils/constants.js';
-
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -25,20 +24,12 @@ import UserInfo from '../components/UserInfo.js';
 
 const profileFormValidator = new FormValidator(formValidationConfig, profileForm);
 const cardFormValidator = new FormValidator(formValidationConfig, cardForm);
-
 const userInfo = new UserInfo(profileElementSelectors);
-
 const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelector, (data) => {
   userInfo.setUserInfo(data.name, data.about);
   popupWithEditProfileForm.close();
 });
-
-popupWithEditProfileForm.setEventListeners();
-
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
-
-popupWithImage.setEventListeners();
-
 const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (data) => {
   const userCard = new Card({ name: data.title, link: data.link}, cardTemplateId, (name, link) => {
     popupWithImage.open(name, link);
@@ -48,9 +39,6 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
   cardForm.reset();
   popupWithAddCardForm.close();
 });
-
-popupWithAddCardForm.setEventListeners();
-
 const cardList = new Section({ items: initialCards, renderer: ({ name, link }) => {
   const card = new Card({ name, link }, cardTemplateId, (name, link) => {
     popupWithImage.open(name, link);
@@ -58,6 +46,10 @@ const cardList = new Section({ items: initialCards, renderer: ({ name, link }) =
   const cardElement = card.createCard();
   cardList.addItem(cardElement);
 } }, cardListSelector);
+
+popupWithEditProfileForm.setEventListeners();
+popupWithImage.setEventListeners();
+popupWithAddCardForm.setEventListeners();
 
 cardList.renderItems();
 
