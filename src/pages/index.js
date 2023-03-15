@@ -1,29 +1,26 @@
 import './index.css';
 import {
   initialCards,
-  profileForm,
   nameInput,
   aboutInput,
   formValidationConfig,
   profilePopupOpenButtonElement,
   cardPopupOpenButtonElement,
-  cardForm,
   cardListSelector,
   popupWithImageSelector,
   popupWithEditProfileFormSelector,
   popupWithAddCardFormSelector,
   cardTemplateId,
-  profileElementSelectors
+  profileElementSelectors,
+  formValidators
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
-import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import { enableValidation } from '../utils/utils.js';
 
-const profileFormValidator = new FormValidator(formValidationConfig, profileForm);
-const cardFormValidator = new FormValidator(formValidationConfig, cardForm);
 const userInfo = new UserInfo(profileElementSelectors);
 const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelector, (data) => {
   userInfo.setUserInfo(data.name, data.about);
@@ -57,14 +54,13 @@ profilePopupOpenButtonElement.addEventListener('click', () => {
   nameInput.value = currentUserInfo.name;
   aboutInput.value = currentUserInfo.about;
   popupWithEditProfileForm.open();
-  profileFormValidator.resetValidation();
+  formValidators['editProfile'].resetValidation();
 });
 cardPopupOpenButtonElement.addEventListener('click', () => {
   popupWithAddCardForm.open();
 });
 
-profileFormValidator.enableValidation();
-cardFormValidator.enableValidation();
+enableValidation(formValidationConfig);
 
 
 

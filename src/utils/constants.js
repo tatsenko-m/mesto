@@ -49,3 +49,4 @@ export const profileElementSelectors = {
   profileTitleSelector: '.profile__title',
   profileSubtitleSelector: '.profile__subtitle'
 };
+export const formValidators = {};
