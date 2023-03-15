@@ -40,7 +40,6 @@ export const aboutInput = profileForm.querySelector('.popup__item_type_about');
 export const profilePopupOpenButtonElement = document.querySelector('.profile__edit-button');
 export const cardPopupOpenButtonElement = document.querySelector('.profile__add-button');
 export const cardForm = document.forms['addCard'];
-export const profileFormInputList = Array.from(profileForm.querySelectorAll('.popup__item'));
 export const cardListSelector = '.gallery__list';
 export const popupWithImageSelector = '.popup_act_open-img';
 export const popupWithEditProfileFormSelector = '.popup_act_edit-profile';

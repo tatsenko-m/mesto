@@ -8,7 +8,6 @@ import {
   profilePopupOpenButtonElement,
   cardPopupOpenButtonElement,
   cardForm,
-  profileFormInputList,
   cardListSelector,
   popupWithImageSelector,
   popupWithEditProfileFormSelector,
@@ -58,9 +57,7 @@ profilePopupOpenButtonElement.addEventListener('click', () => {
   nameInput.value = currentUserInfo.name;
   aboutInput.value = currentUserInfo.about;
   popupWithEditProfileForm.open();
-  profileFormInputList.forEach((inputElement) => {
-    profileFormValidator.hideInputError(inputElement);
-  });
+  profileFormValidator.resetValidation();
 });
 cardPopupOpenButtonElement.addEventListener('click', () => {
   popupWithAddCardForm.open();
