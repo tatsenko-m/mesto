@@ -37,7 +37,6 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
   });
   const userCardElement = userCard.createCard();
   cardList.addItem(userCardElement);
-  cardForm.reset();
   popupWithAddCardForm.close();
 });
 const cardList = new Section({ items: initialCards, renderer: ({ name, link }) => {
