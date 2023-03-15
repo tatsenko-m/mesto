@@ -1,8 +1,6 @@
 import './index.css';
 import {
   initialCards,
-  nameInput,
-  aboutInput,
   formValidationConfig,
   profilePopupOpenButtonElement,
   cardPopupOpenButtonElement,
@@ -51,8 +49,7 @@ cardList.renderItems();
 
 profilePopupOpenButtonElement.addEventListener('click', () => {
   const currentUserInfo = userInfo.getUserInfo();
-  nameInput.value = currentUserInfo.name;
-  aboutInput.value = currentUserInfo.about;
+  popupWithEditProfileForm.setInputValues(currentUserInfo);
   popupWithEditProfileForm.open();
   formValidators['editProfile'].resetValidation();
 });

@@ -35,8 +35,6 @@ export const formValidationConfig = {
 };
 
 export const profileForm = document.forms['editProfile'];
-export const nameInput = profileForm.querySelector('.popup__item_type_name');
-export const aboutInput = profileForm.querySelector('.popup__item_type_about');
 export const profilePopupOpenButtonElement = document.querySelector('.profile__edit-button');
 export const cardPopupOpenButtonElement = document.querySelector('.profile__add-button');
 export const cardForm = document.forms['addCard'];
