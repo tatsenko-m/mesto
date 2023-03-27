@@ -44,7 +44,6 @@ const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelec
     userInfo.setUserInfo(res.name, res.about);
   })
   .catch((err) => alert(err));
-
   popupWithEditProfileForm.close();
 });
 
@@ -52,9 +51,11 @@ const popupWithImage = new PopupWithImage(popupWithImageSelector);
 
 const serverCards = api.getInitialCards();
 
+let cardList;
+
 serverCards
 .then((data) => {
-  const cardList = new Section({ items: data, renderer: ({ name, link }) => {
+  cardList = new Section({ items: data, renderer: ({ name, link }) => {
     const cardElement = createCard({ name, link }, popupWithImage);
     cardList.addItem(cardElement);
   } }, cardListSelector);
@@ -63,8 +64,13 @@ serverCards
 .catch((err) => alert(err));
 
 const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (data) => {
-  const userCardElement = createCard({ name: data.title, link: data.link}, popupWithImage);
-  cardList.addItem(userCardElement);
+  const newCard = api.addCard(data);
+  newCard
+  .then((res) => {
+    const userCardElement = createCard({ name: res.title, link: res.link}, popupWithImage);
+    cardList.addItem(userCardElement);
+  })
+  .catch((err) => alert(err));
   popupWithAddCardForm.close();
 });
 
