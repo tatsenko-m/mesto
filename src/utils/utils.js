@@ -12,8 +12,8 @@ export const enableValidation = (config) => {
   });
 };
 
-export const createCard = ({ name, link }, popupWithImageInstance) => {
-  const card = new Card({ name, link }, cardTemplateId, (name, link) => {
+export const createCard = ({ name, link, likesNumber }, popupWithImageInstance) => {
+  const card = new Card({ name, link, likesNumber }, cardTemplateId, (name, link) => {
     popupWithImageInstance.open(name, link);
   });
   const cardElement = card.createCard();
