@@ -38,7 +38,13 @@ serverUserInfo
 .catch((err) => alert(err));
 
 const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelector, (data) => {
-  userInfo.setUserInfo(data.name, data.about);
+  const editedUserInfo = api.editUserInfo(data);
+  editedUserInfo
+  .then((res) => {
+    userInfo.setUserInfo(res.name, res.about);
+  })
+  .catch((err) => alert(err));
+
   popupWithEditProfileForm.close();
 });
 
