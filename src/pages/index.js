@@ -9,7 +9,8 @@ import {
   popupWithEditProfileFormSelector,
   popupWithAddCardFormSelector,
   profileElementSelectors,
-  formValidators
+  formValidators,
+  profileAvatar
 } from '../utils/constants.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -33,6 +34,7 @@ const serverUserInfo = api.getUserInfo();
 serverUserInfo
 .then((data) => {
   userInfo.setUserInfo(data.name, data.about);
+  profileAvatar.src = data.avatar;
 })
 .catch((err) => alert(err));
 

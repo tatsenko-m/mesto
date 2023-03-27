@@ -48,3 +48,4 @@ export const profileElementSelectors = {
   profileSubtitleSelector: '.profile__subtitle'
 };
 export const formValidators = {};
+export const profileAvatar = document.querySelector('.profile__avatar');
