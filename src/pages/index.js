@@ -15,9 +15,26 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import { enableValidation, createCard } from '../utils/utils.js';
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
+  headers: {
+    authorization: '35e162c1-4508-4f6a-859d-022fc5f0438b',
+    'Content-Type': 'application/json'
+  }
+});
+
 const userInfo = new UserInfo(profileElementSelectors);
+
+const serverUserInfo = api.getUserInfo();
+
+serverUserInfo
+.then((data) => {
+  userInfo.setUserInfo(data.name, data.about);
+})
+.catch((err) => alert(err));
 
 const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelector, (data) => {
   userInfo.setUserInfo(data.name, data.about);
