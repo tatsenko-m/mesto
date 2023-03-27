@@ -1,6 +1,5 @@
 import './index.css';
 import {
-  initialCards,
   formValidationConfig,
   profilePopupOpenButtonElement,
   cardPopupOpenButtonElement,
@@ -45,10 +44,17 @@ const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelec
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 
-const cardList = new Section({ items: initialCards, renderer: ({ name, link }) => {
-  const cardElement = createCard({ name, link }, popupWithImage);
-  cardList.addItem(cardElement);
-} }, cardListSelector);
+const serverCards = api.getInitialCards();
+
+serverCards
+.then((data) => {
+  const cardList = new Section({ items: data, renderer: ({ name, link }) => {
+    const cardElement = createCard({ name, link }, popupWithImage);
+    cardList.addItem(cardElement);
+  } }, cardListSelector);
+  cardList.renderItems();
+})
+.catch((err) => alert(err));
 
 const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (data) => {
   const userCardElement = createCard({ name: data.title, link: data.link}, popupWithImage);
@@ -59,8 +65,6 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
 popupWithEditProfileForm.setEventListeners();
 popupWithImage.setEventListeners();
 popupWithAddCardForm.setEventListeners();
-
-cardList.renderItems();
 
 profilePopupOpenButtonElement.addEventListener('click', () => {
   const currentUserInfo = userInfo.getUserInfo();
