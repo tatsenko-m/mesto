@@ -28,9 +28,7 @@ const api = new Api({
 
 const userInfo = new UserInfo(profileElementSelectors);
 
-const userId = {
-  id: ''
-};
+const userId = { id: '' };
 
 let cardList;
 
