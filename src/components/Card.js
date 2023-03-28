@@ -70,8 +70,6 @@ class Card {
       })
       .catch((err) => alert(err));
     }
-
-    // this._likeButtonElement.classList.toggle('card__like-button_active');
   }
 
   _setEventListeners() {
