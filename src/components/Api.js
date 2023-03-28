@@ -4,7 +4,7 @@ class Api {
     this._headers = options.headers;
   }
 
-  _checkResponse(res) {
+  _handleResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -18,7 +18,7 @@ class Api {
       headers: this._headers
     })
     .then((res) => {
-      return this._checkResponse(res);
+      return this._handleResponse(res);
     });
   }
 
@@ -32,7 +32,7 @@ class Api {
       })
     })
     .then((res) => {
-      return this._checkResponse(res);
+      return this._handleResponse(res);
     });
   }
 
@@ -42,7 +42,7 @@ class Api {
       headers: this._headers
     })
     .then((res) => {
-      return this._checkResponse(res);
+      return this._handleResponse(res);
     });
   }
 
@@ -56,7 +56,17 @@ class Api {
       })
     })
     .then((res) => {
-      return this._checkResponse(res);
+      return this._handleResponse(res);
+    });
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then((res) => {
+      return this._handleResponse(res);
     });
   }
 }
