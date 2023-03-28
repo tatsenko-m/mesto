@@ -13,8 +13,8 @@ export const enableValidation = (config) => {
   });
 };
 
-export const createCard = ({ name, link, likesNumber, cardId, ownerId }, popupWithImageInstance, ApiInstance, userId) => {
-  const card = new Card({ name, link, likesNumber, cardId, ownerId }, cardTemplateId, (name, link) => {
+export const createCard = ({ name, link, likesArr, cardId, ownerId }, popupWithImageInstance, ApiInstance, userId) => {
+  const card = new Card({ name, link, likesArr, cardId, ownerId }, cardTemplateId, (name, link) => {
     popupWithImageInstance.open(name, link);
   }, () => {
     const popupWithConfirmation = new PopupWithConfirmation(popupWithConfirmationSelector, () => {

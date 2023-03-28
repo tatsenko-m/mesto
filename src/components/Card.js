@@ -1,8 +1,8 @@
 class Card {
-  constructor({ name, link, likesNumber, cardId, ownerId }, templateSelector, handleCardClick, handleDelButtonClick, userId) {
+  constructor({ name, link, likesArr, cardId, ownerId }, templateSelector, handleCardClick, handleDelButtonClick, userId) {
     this._name = name;
     this._link = link;
-    this._likesNumber = likesNumber;
+    this._likesNumber = likesArr.length;
     this._cardId = cardId;
     this._ownerId = ownerId;
     this._userId = userId;
