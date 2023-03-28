@@ -7,7 +7,6 @@ import {
   popupWithImageSelector,
   popupWithEditProfileFormSelector,
   popupWithAddCardFormSelector,
-  popupWithConfirmationSelector,
   profileElementSelectors,
   formValidators,
   profileAvatar
@@ -15,7 +14,6 @@ import {
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import { enableValidation, createCard } from '../utils/utils.js';
@@ -80,15 +78,6 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
   .catch((err) => alert(err));
   popupWithAddCardForm.close();
 });
-
-// const popupWithConfirmation = new PopupWithConfirmation(popupWithConfirmationSelector, () => {
-//   const delCard = api.deleteCard(cardId);
-//   delCard
-//   .then(() => {
-//     card.handleDeleteCard();
-//   })
-//   .catch((err) => alert(err));
-// });
 
 popupWithEditProfileForm.setEventListeners();
 popupWithImage.setEventListeners();
