@@ -13,12 +13,12 @@ export const enableValidation = (config) => {
   });
 };
 
-export const createCard = ({ name, link, likesArr, cardId, ownerId }, popupWithImageInstance, ApiInstance, userId) => {
+export const createCard = ({ name, link, likesArr, cardId, ownerId }, popupWithImageInstance, userId, api) => {
   const card = new Card({ name, link, likesArr, cardId, ownerId }, cardTemplateId, (name, link) => {
     popupWithImageInstance.open(name, link);
   }, () => {
     const popupWithConfirmation = new PopupWithConfirmation(popupWithConfirmationSelector, () => {
-      const delCard = ApiInstance.deleteCard(cardId);
+      const delCard = api.deleteCard(cardId);
       delCard
       .then(() => {
         card.handleDeleteCard();
@@ -29,7 +29,7 @@ export const createCard = ({ name, link, likesArr, cardId, ownerId }, popupWithI
     });
     popupWithConfirmation.setEventListeners();
     popupWithConfirmation.open();
-  }, userId);
+  }, userId, api);
   const cardElement = card.createCard();
   return cardElement;
 };
