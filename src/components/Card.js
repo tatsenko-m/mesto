@@ -32,6 +32,12 @@ class Card {
     this._cardImageElement.alt = 'Фото ' + this._name;
     this._element.querySelector('.card__title').textContent = this._name;
 
+    if (this._likesArr.some(obj => obj._id === this._userId)) {
+      this._likeButtonElement.classList.add('card__like-button_active');
+    } else {
+      this._likeButtonElement.classList.remove('card__like-button_active');
+    }
+
     this._likeCounter.textContent = this._likesNumber;
 
     return this._element;
@@ -47,12 +53,20 @@ class Card {
       this._api.unlikeCard(cardId)
       .then(() => {
         this._likeButtonElement.classList.remove('card__like-button_active');
+        return this._api.getInitialCards();
+      })
+      .then((data) => {
+        this._likeCounter.textContent = data.find(obj => obj._id === cardId).likes.length;
       })
       .catch((err) => alert(err));
     } else {
       this._api.likeCard(cardId)
       .then(() => {
         this._likeButtonElement.classList.add('card__like-button_active');
+        return this._api.getInitialCards();
+      })
+      .then((data) => {
+        this._likeCounter.textContent = data.find(obj => obj._id === cardId).likes.length;
       })
       .catch((err) => alert(err));
     }
