@@ -12,10 +12,10 @@ export const enableValidation = (config) => {
   });
 };
 
-export const createCard = ({ name, link, likesNumber }, popupWithImageInstance) => {
-  const card = new Card({ name, link, likesNumber }, cardTemplateId, (name, link) => {
+export const createCard = ({ name, link, likesNumber, ownerId }, popupWithImageInstance, userId) => {
+  const card = new Card({ name, link, likesNumber, ownerId }, cardTemplateId, (name, link) => {
     popupWithImageInstance.open(name, link);
-  });
+  }, userId);
   const cardElement = card.createCard();
   return cardElement;
 };

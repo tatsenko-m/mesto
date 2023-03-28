@@ -7,6 +7,7 @@ import {
   popupWithImageSelector,
   popupWithEditProfileFormSelector,
   popupWithAddCardFormSelector,
+  popupWithConfirmationSelector,
   profileElementSelectors,
   formValidators,
   profileAvatar
@@ -14,6 +15,7 @@ import {
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import { enableValidation, createCard } from '../utils/utils.js';
@@ -30,10 +32,15 @@ const userInfo = new UserInfo(profileElementSelectors);
 
 const serverUserInfo = api.getUserInfo();
 
+const userId = {
+  id: ''
+};
+
 serverUserInfo
 .then((data) => {
   userInfo.setUserInfo(data.name, data.about);
   profileAvatar.src = data.avatar;
+  userId.id = data._id;
 })
 .catch((err) => alert(err));
 
@@ -56,7 +63,7 @@ let cardList;
 serverCards
 .then((data) => {
   cardList = new Section({ items: data, renderer: (item) => {
-    const cardElement = createCard({ name: item.name, link: item.link, likesNumber: item.likes.length }, popupWithImage);
+    const cardElement = createCard({ name: item.name, link: item.link, likesNumber: item.likes.length, ownerId: item.owner._id }, popupWithImage, userId.id);
     cardList.addItem(cardElement);
   } }, cardListSelector);
   cardList.renderItems();
@@ -67,12 +74,16 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
   const newCard = api.addCard(data);
   newCard
   .then((res) => {
-    const userCardElement = createCard({ name: res.title, link: res.link, likesNumber: res.likes.length }, popupWithImage);
+    const userCardElement = createCard({ name: res.title, link: res.link, likesNumber: res.likes.length, ownerId: res.owner._id }, popupWithImage, userId.id);
     cardList.addItem(userCardElement);
   })
   .catch((err) => alert(err));
   popupWithAddCardForm.close();
 });
+
+// const popupWithConfirmation = new PopupWithConfirmation(popupWithConfirmationSelector, () => {
+
+// });
 
 popupWithEditProfileForm.setEventListeners();
 popupWithImage.setEventListeners();
