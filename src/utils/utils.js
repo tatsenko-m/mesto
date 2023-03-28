@@ -1,6 +1,7 @@
-import { formValidators, cardTemplateId } from './constants.js';
+import { formValidators, cardTemplateId, popupWithConfirmationSelector } from './constants.js';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 
 export const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
@@ -12,9 +13,22 @@ export const enableValidation = (config) => {
   });
 };
 
-export const createCard = ({ name, link, likesNumber, ownerId }, popupWithImageInstance, userId) => {
-  const card = new Card({ name, link, likesNumber, ownerId }, cardTemplateId, (name, link) => {
+export const createCard = ({ name, link, likesNumber, cardId, ownerId }, popupWithImageInstance, ApiInstance, userId) => {
+  const card = new Card({ name, link, likesNumber, cardId, ownerId }, cardTemplateId, (name, link) => {
     popupWithImageInstance.open(name, link);
+  }, () => {
+    const popupWithConfirmation = new PopupWithConfirmation(popupWithConfirmationSelector, () => {
+      const delCard = ApiInstance.deleteCard(cardId);
+      delCard
+      .then(() => {
+        card.handleDeleteCard();
+        popupWithConfirmation.close();
+        popupWithConfirmation.deletePopup();
+      })
+      .catch((err) => alert(err));
+    });
+    popupWithConfirmation.setEventListeners();
+    popupWithConfirmation.open();
   }, userId);
   const cardElement = card.createCard();
   return cardElement;

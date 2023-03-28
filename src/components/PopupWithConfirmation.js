@@ -14,6 +14,11 @@ class PopupWithConfirmation extends Popup {
       this._handleConfirmation();
     });
   }
+
+  deletePopup() {
+    this._popupElement.remove();
+    this._popupElement = null;
+  }
 }
 
 export default PopupWithConfirmation;

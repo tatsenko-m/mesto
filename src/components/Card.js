@@ -1,12 +1,14 @@
 class Card {
-  constructor({ name, link, likesNumber, ownerId }, templateSelector, handleCardClick, userId) {
+  constructor({ name, link, likesNumber, cardId, ownerId }, templateSelector, handleCardClick, handleDelButtonClick, userId) {
     this._name = name;
     this._link = link;
     this._likesNumber = likesNumber;
+    this._cardId = cardId;
     this._ownerId = ownerId;
     this._userId = userId;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDelButtonClick = handleDelButtonClick;
   }
 
   _getTemplate() {
@@ -33,7 +35,7 @@ class Card {
     return this._element;
   }
 
-  _handleDeleteCard() {
+  handleDeleteCard() {
     this._element.remove();
     this._element = null;
   }
@@ -51,7 +53,7 @@ class Card {
       this._deleteButtonElement = null;
     } else {
       this._deleteButtonElement.addEventListener('click', () => {
-        this._handleDeleteCard();
+        this._handleDelButtonClick();
       });
     }
 

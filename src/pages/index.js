@@ -63,7 +63,7 @@ let cardList;
 serverCards
 .then((data) => {
   cardList = new Section({ items: data, renderer: (item) => {
-    const cardElement = createCard({ name: item.name, link: item.link, likesNumber: item.likes.length, ownerId: item.owner._id }, popupWithImage, userId.id);
+    const cardElement = createCard({ name: item.name, link: item.link, likesNumber: item.likes.length, cardId: item._id, ownerId: item.owner._id }, popupWithImage, api, userId.id);
     cardList.addItem(cardElement);
   } }, cardListSelector);
   cardList.renderItems();
@@ -74,7 +74,7 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
   const newCard = api.addCard(data);
   newCard
   .then((res) => {
-    const userCardElement = createCard({ name: res.title, link: res.link, likesNumber: res.likes.length, ownerId: res.owner._id }, popupWithImage, userId.id);
+    const userCardElement = createCard({ name: res.title, link: res.link, likesNumber: res.likes.length, cardId: res._id, ownerId: res.owner._id }, popupWithImage, api, userId.id);
     cardList.addItem(userCardElement);
   })
   .catch((err) => alert(err));
@@ -82,7 +82,12 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
 });
 
 // const popupWithConfirmation = new PopupWithConfirmation(popupWithConfirmationSelector, () => {
-
+//   const delCard = api.deleteCard(cardId);
+//   delCard
+//   .then(() => {
+//     card.handleDeleteCard();
+//   })
+//   .catch((err) => alert(err));
 // });
 
 popupWithEditProfileForm.setEventListeners();
