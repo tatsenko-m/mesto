@@ -119,6 +119,24 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_act_update-avatar">
+      <div class="popup__container popup__container_size_m">
+        <button class="popup__close-button" type="button"></button>
+        <form class="popup__form" name="updateAvatar">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input
+            name="link"
+            id="link"
+            class="popup__item popup__item_type_link"
+            type="url"
+            placeholder="Ссылка на картинку"
+            required
+          />
+          <span class="popup__error" id="link-error"></span>
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
         <img
