@@ -28,23 +28,28 @@ const api = new Api({
 
 const userInfo = new UserInfo(profileElementSelectors);
 
-const serverUserInfo = api.getUserInfo();
-
 const userId = {
   id: ''
 };
 
-serverUserInfo
-.then((data) => {
-  userInfo.setUserInfo(data.name, data.about);
-  profileAvatar.src = data.avatar;
-  userId.id = data._id;
+let cardList;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+.then(([user, cards]) => {
+  userInfo.setUserInfo(user.name, user.about);
+  profileAvatar.src = user.avatar;
+  userId.id = user._id;
+
+  cardList = new Section({ items: cards, renderer: (item) => {
+    const cardElement = createCard({ name: item.name, link: item.link, likesArr: item.likes, cardId: item._id, ownerId: item.owner._id }, popupWithImage, userId.id, api);
+    cardList.addItem(cardElement);
+  } }, cardListSelector);
+  cardList.renderItems();
 })
 .catch((err) => alert(err));
 
 const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelector, (data) => {
-  const editedUserInfo = api.editUserInfo(data);
-  editedUserInfo
+  api.editUserInfo(data)
   .then((res) => {
     userInfo.setUserInfo(res.name, res.about);
   })
@@ -54,23 +59,8 @@ const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelec
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 
-const serverCards = api.getInitialCards();
-
-let cardList;
-
-serverCards
-.then((data) => {
-  cardList = new Section({ items: data, renderer: (item) => {
-    const cardElement = createCard({ name: item.name, link: item.link, likesArr: item.likes, cardId: item._id, ownerId: item.owner._id }, popupWithImage, userId.id, api);
-    cardList.addItem(cardElement);
-  } }, cardListSelector);
-  cardList.renderItems();
-})
-.catch((err) => alert(err));
-
 const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (data) => {
-  const newCard = api.addCard(data);
-  newCard
+  api.addCard(data)
   .then((res) => {
     const userCardElement = createCard({ name: res.title, link: res.link, likesArr: res.likes, cardId: res._id, ownerId: res.owner._id }, popupWithImage, userId.id, api);
     cardList.addItem(userCardElement);
