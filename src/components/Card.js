@@ -60,6 +60,11 @@ class Card {
         this._likeCounter.textContent = data.find(obj => obj._id === cardId).likes.length;
       })
       .catch((err) => alert(err));
+      this._api.getInitialCards()
+      .then((data) => {
+        this._likesArr = data.find(obj => obj._id === this._cardId).likes;
+      })
+      .catch((err) => alert(err));
     } else {
       this._api.likeCard(cardId)
       .then(() => {
@@ -68,6 +73,11 @@ class Card {
       })
       .then((data) => {
         this._likeCounter.textContent = data.find(obj => obj._id === cardId).likes.length;
+      })
+      .catch((err) => alert(err));
+      this._api.getInitialCards()
+      .then((data) => {
+        this._likesArr = data.find(obj => obj._id === this._cardId).likes;
       })
       .catch((err) => alert(err));
     }
