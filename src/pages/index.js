@@ -27,7 +27,7 @@ const api = new Api({
   }
 });
 
-const userInfo = new UserInfo(profileElementSelectors);
+const userInfo = new UserInfo(profileElementSelectors, profileAvatar);
 
 const userId = { id: '' };
 

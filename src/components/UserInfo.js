@@ -1,11 +1,10 @@
 class UserInfo {
-  constructor({ profileTitleSelector, profileSubtitleSelector, profileAvatarSelector }) {
+  constructor({ profileTitleSelector, profileSubtitleSelector }, profileAvatarElement) {
     this._profileTitleSelector = profileTitleSelector;
     this._profileSubtitleSelector = profileSubtitleSelector;
-    this._profileAvatarSelector = profileAvatarSelector;
     this._profileTitleElement = document.querySelector(this._profileTitleSelector);
     this._profileSubtitleElement = document.querySelector(this._profileSubtitleSelector);
-    this._profileAvatarElement = document.querySelector(this._profileAvatarSelector);
+    this._profileAvatarElement = profileAvatarElement;
   }
 
   getUserInfo() {
