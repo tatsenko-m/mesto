@@ -48,34 +48,46 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 .catch((err) => alert(err));
 
 const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelector, (data) => {
+  popupWithEditProfileForm.renderLoading(true);
   api.editUserInfo(data)
   .then((res) => {
     userInfo.setUserInfo(res.name, res.about);
   })
-  .catch((err) => alert(err));
-  popupWithEditProfileForm.close();
+  .catch((err) => alert(err))
+  .finally(() => {
+    popupWithEditProfileForm.renderLoading(false);
+    popupWithEditProfileForm.close();
+  });
 });
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 
 const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (data) => {
+  popupWithAddCardForm.renderLoading(true);
   api.addCard(data)
   .then((res) => {
     const userCardElement = createCard({ name: res.title, link: res.link, likesArr: res.likes, cardId: res._id, ownerId: res.owner._id }, popupWithImage, userId.id, api);
     cardList.addItem(userCardElement);
     cardList.updateItems();
   })
-  .catch((err) => alert(err));
-  popupWithAddCardForm.close();
+  .catch((err) => alert(err))
+  .finally(() => {
+    popupWithAddCardForm.renderLoading(false);
+    popupWithAddCardForm.close();
+  });
 });
 
 const popupWithUpdateAvatarForm = new PopupWithForm(popupWithUpdateAvatarFormSelector, (data) => {
+  popupWithUpdateAvatarForm.renderLoading(true);
   api.updateAvatar(data)
   .then((res) => {
     userInfo.setAvatar(res.avatar);
   })
-  .catch((err) => alert(err));
-  popupWithUpdateAvatarForm.close();
+  .catch((err) => alert(err))
+  .finally(() => {
+    popupWithUpdateAvatarForm.renderLoading(false);
+    popupWithUpdateAvatarForm.close();
+  });
 });
 
 popupWithEditProfileForm.setEventListeners();
