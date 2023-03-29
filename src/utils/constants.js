@@ -10,6 +10,7 @@ export const formValidationConfig = {
 export const profileForm = document.forms['editProfile'];
 export const profilePopupOpenButtonElement = document.querySelector('.profile__edit-button');
 export const cardPopupOpenButtonElement = document.querySelector('.profile__add-button');
+export const profileAvatar = document.querySelector('.profile__avatar');
 export const cardForm = document.forms['addCard'];
 export const cardListSelector = '.gallery__list';
 export const popupWithImageSelector = '.popup_act_open-img';
@@ -24,4 +25,4 @@ export const profileElementSelectors = {
   profileAvatarSelector: '.profile__avatar'
 };
 export const formValidators = {};
-export const profileAvatar = document.querySelector('.profile__avatar');
+export const userId = { id: '' };

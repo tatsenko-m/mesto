@@ -10,7 +10,8 @@ import {
   popupWithUpdateAvatarFormSelector,
   profileElementSelectors,
   formValidators,
-  profileAvatar
+  profileAvatar,
+  userId
 } from '../utils/constants.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -28,8 +29,6 @@ const api = new Api({
 });
 
 const userInfo = new UserInfo(profileElementSelectors, profileAvatar);
-
-const userId = { id: '' };
 
 let cardList;
 
