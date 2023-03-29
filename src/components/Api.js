@@ -89,6 +89,19 @@ class Api {
       return this._handleResponse(res);
     });
   }
+
+  updateAvatar(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar
+      })
+    })
+    .then((res) => {
+      return this._handleResponse(res);
+    });
+  }
 }
 
 export default Api;

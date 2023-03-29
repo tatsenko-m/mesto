@@ -7,6 +7,7 @@ import {
   popupWithImageSelector,
   popupWithEditProfileFormSelector,
   popupWithAddCardFormSelector,
+  popupWithUpdateAvatarFormSelector,
   profileElementSelectors,
   formValidators,
   profileAvatar
@@ -35,7 +36,7 @@ let cardList;
 Promise.all([api.getUserInfo(), api.getInitialCards()])
 .then(([user, cards]) => {
   userInfo.setUserInfo(user.name, user.about);
-  profileAvatar.src = user.avatar;
+  userInfo.setAvatar(user.avatar);
   userId.id = user._id;
 
   cardList = new Section({ items: cards, renderer: (item) => {
@@ -68,9 +69,19 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
   popupWithAddCardForm.close();
 });
 
+const popupWithUpdateAvatarForm = new PopupWithForm(popupWithUpdateAvatarFormSelector, (data) => {
+  api.updateAvatar(data)
+  .then((res) => {
+    userInfo.setAvatar(res.avatar);
+  })
+  .catch((err) => alert(err));
+  popupWithUpdateAvatarForm.close();
+});
+
 popupWithEditProfileForm.setEventListeners();
 popupWithImage.setEventListeners();
 popupWithAddCardForm.setEventListeners();
+popupWithUpdateAvatarForm.setEventListeners();
 
 profilePopupOpenButtonElement.addEventListener('click', () => {
   const currentUserInfo = userInfo.getUserInfo();
@@ -80,6 +91,12 @@ profilePopupOpenButtonElement.addEventListener('click', () => {
 });
 cardPopupOpenButtonElement.addEventListener('click', () => {
   popupWithAddCardForm.open();
+});
+profileAvatar.addEventListener('click', () => {
+  const currentUserInfo = userInfo.getUserInfo();
+  popupWithUpdateAvatarForm.setInputValues(currentUserInfo);
+  popupWithUpdateAvatarForm.open();
+  formValidators['updateAvatar'].resetValidation();
 });
 
 enableValidation(formValidationConfig);
