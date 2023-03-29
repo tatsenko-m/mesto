@@ -26,11 +26,12 @@ class Card {
   createCard() {
     this._element = this._getTemplate();
     this._cardImageElement = this._element.querySelector('.card__image');
+    this._cardTitleElement = this._element.querySelector('.card__title');
     this._setEventListeners(this._userId);
 
     this._cardImageElement.src = this._link;
     this._cardImageElement.alt = 'Фото ' + this._name;
-    this._element.querySelector('.card__title').textContent = this._name;
+    this._cardTitleElement.textContent = this._name;
 
     if (this._likesArr.some(obj => obj._id === this._userId)) {
       this._likeButtonElement.classList.add('card__like-button_active');

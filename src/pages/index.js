@@ -42,7 +42,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   cardList = new Section({ items: cards, renderer: (item) => {
     const cardElement = createCard({ name: item.name, link: item.link, likesArr: item.likes, cardId: item._id, ownerId: item.owner._id }, popupWithImage, userId.id, api);
     cardList.addItem(cardElement);
-  } }, cardListSelector, api);
+  } }, cardListSelector);
   cardList.renderItems();
 })
 .catch((err) => alert(err));
@@ -66,9 +66,8 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
   popupWithAddCardForm.renderLoading(true);
   api.addCard(data)
   .then((res) => {
-    const userCardElement = createCard({ name: res.title, link: res.link, likesArr: res.likes, cardId: res._id, ownerId: res.owner._id }, popupWithImage, userId.id, api);
+    const userCardElement = createCard({ name: res.name, link: res.link, likesArr: res.likes, cardId: res._id, ownerId: res.owner._id }, popupWithImage, userId.id, api);
     cardList.addItem(userCardElement);
-    cardList.updateItems();
   })
   .catch((err) => alert(err))
   .finally(() => {
