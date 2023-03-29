@@ -50,38 +50,24 @@ class Card {
   }
 
   _handleLikeCard(cardId) {
-    if (this._likesArr.some(obj => obj._id === this._userId)) {
-      this._api.unlikeCard(cardId)
-      .then(() => {
-        this._likeButtonElement.classList.remove('card__like-button_active');
-        return this._api.getInitialCards();
-      })
-      .then((data) => {
-        this._likeCounter.textContent = data.find(obj => obj._id === cardId).likes.length;
-      })
-      .catch((err) => alert(err));
-      this._api.getInitialCards()
-      .then((data) => {
-        this._likesArr = data.find(obj => obj._id === this._cardId).likes;
-      })
-      .catch((err) => alert(err));
+    const isLiked = this._likesArr.some(obj => obj._id === this._userId);
+
+    let fetchPromise;
+
+    if (isLiked) {
+      fetchPromise = this._api.unlikeCard(cardId);
     } else {
-      this._api.likeCard(cardId)
-      .then(() => {
-        this._likeButtonElement.classList.add('card__like-button_active');
-        return this._api.getInitialCards();
-      })
-      .then((data) => {
-        this._likeCounter.textContent = data.find(obj => obj._id === cardId).likes.length;
-      })
-      .catch((err) => alert(err));
-      this._api.getInitialCards()
-      .then((data) => {
-        this._likesArr = data.find(obj => obj._id === this._cardId).likes;
-      })
-      .catch((err) => alert(err));
+      fetchPromise = this._api.likeCard(cardId);
     }
-  }
+
+    fetchPromise
+    .then((data) => {
+      this._likeButtonElement.classList.toggle('card__like-button_active', !isLiked);
+      this._likeCounter.textContent = data.likes.length;
+      this._likesArr = data.likes;
+    })
+    .catch((err) => alert(err));
+    }
 
   _setEventListeners() {
     this._likeButtonElement = this._element.querySelector('.card__like-button');
