@@ -1,5 +1,5 @@
 class Card {
-  constructor({ name, link, likesArr, cardId, ownerId }, templateSelector, handleCardClick, handleDelButtonClick, userId, api) {
+  constructor({ name, link, likesArr, cardId, ownerId }, templateSelector, handleCardClick, handleDelButtonClick, userId, handleLikeCard) {
     this._name = name;
     this._link = link;
     this._likesArr = likesArr;
@@ -10,7 +10,7 @@ class Card {
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDelButtonClick = handleDelButtonClick;
-    this._api = api;
+    this._handleLikeCard = handleLikeCard;
   }
 
   _getTemplate() {
@@ -48,26 +48,6 @@ class Card {
     this._element.remove();
     this._element = null;
   }
-
-  _handleLikeCard(cardId) {
-    const isLiked = this._likesArr.some(obj => obj._id === this._userId);
-
-    let fetchPromise;
-
-    if (isLiked) {
-      fetchPromise = this._api.unlikeCard(cardId);
-    } else {
-      fetchPromise = this._api.likeCard(cardId);
-    }
-
-    fetchPromise
-    .then((data) => {
-      this._likeButtonElement.classList.toggle('card__like-button_active', !isLiked);
-      this._likeCounter.textContent = data.likes.length;
-      this._likesArr = data.likes;
-    })
-    .catch((err) => alert(err));
-    }
 
   _setEventListeners() {
     this._likeButtonElement = this._element.querySelector('.card__like-button');

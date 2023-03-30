@@ -29,7 +29,25 @@ export const createCard = ({ name, link, likesArr, cardId, ownerId }, popupWithI
     });
     popupWithConfirmation.setEventListeners();
     popupWithConfirmation.open();
-  }, userId, api);
+  }, userId, (cardId) => {
+    const isLiked = card._likesArr.some(obj => obj._id === card._userId);
+
+    let fetchPromise;
+
+    if (isLiked) {
+      fetchPromise = api.unlikeCard(cardId);
+    } else {
+      fetchPromise = api.likeCard(cardId);
+    }
+
+    fetchPromise
+    .then((data) => {
+      card._likeButtonElement.classList.toggle('card__like-button_active', !isLiked);
+      card._likeCounter.textContent = data.likes.length;
+      card._likesArr = data.likes;
+    })
+    .catch((err) => alert(err));
+  });
   const cardElement = card.createCard();
   return cardElement;
 };
