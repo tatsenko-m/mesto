@@ -1,9 +1,11 @@
 import Popup from './Popup.js';
 
 class PopupWithConfirmation extends Popup {
-  constructor(popupSelector, handleConfirmation) {
+  constructor(popupSelector, handleConfirmation, card, cardId) {
     super(popupSelector);
     this._handleConfirmation = handleConfirmation;
+    this._card = card;
+    this._cardId = cardId;
     this._form = this._popupElement.querySelector('.popup__form');
   }
 
@@ -13,11 +15,6 @@ class PopupWithConfirmation extends Popup {
       evt.preventDefault();
       this._handleConfirmation();
     });
-  }
-
-  deletePopup() {
-    this._popupElement.remove();
-    this._popupElement = null;
   }
 }
 
