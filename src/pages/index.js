@@ -51,11 +51,11 @@ const popupWithEditProfileForm = new PopupWithForm(popupWithEditProfileFormSelec
   api.editUserInfo(data)
   .then((res) => {
     userInfo.setUserInfo(res.name, res.about);
+    popupWithEditProfileForm.close();
   })
   .catch((err) => alert(err))
   .finally(() => {
     popupWithEditProfileForm.renderLoading(false);
-    popupWithEditProfileForm.close();
   });
 });
 
@@ -67,11 +67,11 @@ const popupWithAddCardForm = new PopupWithForm(popupWithAddCardFormSelector, (da
   .then((res) => {
     const userCardElement = createCard({ name: res.name, link: res.link, likesArr: res.likes, cardId: res._id, ownerId: res.owner._id }, popupWithImage, userId.id, api);
     cardList.addItem(userCardElement);
+    popupWithAddCardForm.close();
   })
   .catch((err) => alert(err))
   .finally(() => {
     popupWithAddCardForm.renderLoading(false);
-    popupWithAddCardForm.close();
   });
 });
 
@@ -80,11 +80,11 @@ const popupWithUpdateAvatarForm = new PopupWithForm(popupWithUpdateAvatarFormSel
   api.updateAvatar(data)
   .then((res) => {
     userInfo.setAvatar(res.avatar);
+    popupWithUpdateAvatarForm.close();
   })
   .catch((err) => alert(err))
   .finally(() => {
     popupWithUpdateAvatarForm.renderLoading(false);
-    popupWithUpdateAvatarForm.close();
   });
 });
 
