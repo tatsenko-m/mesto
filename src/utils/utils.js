@@ -41,3 +41,9 @@ export const createCard = ({ name, link, likesArr, cardId, ownerId }, popupWithI
   const cardElement = card.createCard();
   return cardElement;
 };
+
+export const setEventListenersForPopups = (popups) => {
+  popups.forEach(popup => {
+    popup.setEventListeners();
+  });
+};

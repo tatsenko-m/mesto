@@ -20,7 +20,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
-import { enableValidation, createCard } from '../utils/utils.js';
+import { enableValidation, createCard, setEventListenersForPopups } from '../utils/utils.js';
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
@@ -99,11 +99,13 @@ const popupWithUpdateAvatarForm = new PopupWithForm(popupWithUpdateAvatarFormSel
   });
 });
 
-popupWithEditProfileForm.setEventListeners();
-popupWithImage.setEventListeners();
-popupWithAddCardForm.setEventListeners();
-popupWithUpdateAvatarForm.setEventListeners();
-popupWithConfirmation.setEventListeners();
+setEventListenersForPopups([
+  popupWithEditProfileForm,
+  popupWithImage,
+  popupWithAddCardForm,
+  popupWithUpdateAvatarForm,
+  popupWithConfirmation
+]);
 
 profilePopupOpenButtonElement.addEventListener('click', () => {
   const currentUserInfo = userInfo.getUserInfo();
