@@ -17,12 +17,18 @@ class UserInfo {
   }
 
   setUserInfo(name, about) {
-    this._profileTitleElement.textContent = name;
-    this._profileSubtitleElement.textContent = about;
+    if (name) {
+      this._profileTitleElement.textContent = name;
+    }
+    if (about) {
+      this._profileSubtitleElement.textContent = about;
+    }
   }
 
   setAvatar(avatar) {
-    this._profileAvatarElement.src = avatar;
+    if (avatar) {
+      this._profileAvatarElement.src = avatar;
+    }
   }
 }
 
