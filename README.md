@@ -1,11 +1,13 @@
-# <picture><img src="./docs/project-logo.svg" width="200" alt="Лого проекта"></picture> ![GitHub repo size](https://img.shields.io/github/repo-size/tatsenko-m/mesto) ![GitHub top language](https://img.shields.io/github/languages/top/tatsenko-m/mesto)
+# <picture><img src="https://raw.githubusercontent.com/tatsenko-m/mesto/b23821f90fe6cbb2267f9daed1b7a01c6b2eafcc/docs/project-logo.svg" width="200" alt="Лого проекта"></picture> ![GitHub repo size](https://img.shields.io/github/repo-size/tatsenko-m/mesto) ![GitHub top language](https://img.shields.io/github/languages/top/tatsenko-m/mesto)
 Проект по разработке сервиса Mesto: интерактивной страницы, куда можно добавлять фотографии, удалять их и ставить лайки.
 
 Открыть демо:
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)](https://tatsenko-m.github.io/mesto/)
 
-<img src="./docs/mesto-screen-rec.gif">
+<picture>
+  <img src="https://raw.githubusercontent.com/tatsenko-m/mesto/main/docs/mesto-screen-rec.gif" alt="Анимация с демо интерфейса">
+</picture>
 
 ## Функциональность
 - Добавление/удаление карточки с фотографией и подписью
