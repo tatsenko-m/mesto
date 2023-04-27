@@ -21,7 +21,7 @@
 - Валидация всех форм ввода данных
 
 ## Технологии
-📐 **Верстка**
+📄 **Верстка**
 * Флексбокс-верстка
 * Grid Layout
 * "Резиновая" верстка, относительные размеры, функция `calc()`
@@ -44,13 +44,14 @@
 * Асинхронный код
 * Работа с API, `fetch` запросы.
 
-📁 **Методология БЭМ. Файловая структура Nested**
-
-💡 **Парадигма ООП**
-
 📦 **Сборка модулей:**
 
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white) ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black) ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black) ![PostCSS](https://img.shields.io/badge/postcss-DD3A0A?style=for-the-badge&logo=postcss&logoColor=white)
+
+**а также методологии:**
+
+- БЭМ. Файловая структура Nested
+- ООП
 
 ## Инструкция по установке
 
