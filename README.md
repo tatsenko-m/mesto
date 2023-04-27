@@ -1,4 +1,4 @@
-# <picture><img src="https://raw.githubusercontent.com/tatsenko-m/mesto/main/docs/project-logo.png" width="200" alt="Лого проекта"></picture> ![GitHub repo size](https://img.shields.io/github/repo-size/tatsenko-m/mesto) ![GitHub top language](https://img.shields.io/github/languages/top/tatsenko-m/mesto)
+# <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tatsenko-m/mesto/main/docs/project-logo-dark.png"><img src="https://raw.githubusercontent.com/tatsenko-m/mesto/main/docs/project-logo-light.png" width="200" alt="Лого проекта"></picture> ![GitHub repo size](https://img.shields.io/github/repo-size/tatsenko-m/mesto) ![GitHub top language](https://img.shields.io/github/languages/top/tatsenko-m/mesto)
 Проект по разработке сервиса Mesto: интерактивной страницы, куда можно добавлять фотографии, удалять их и ставить лайки.
 
 Открыть демо:
